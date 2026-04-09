@@ -1,5 +1,5 @@
 export const extractMdxText = (raw: string | undefined) => {
-  if (!raw) return "";
+  if (!raw) return ""
   return (
     raw
       // 移除 import/export 行
@@ -18,5 +18,5 @@ export const extractMdxText = (raw: string | undefined) => {
       // 多余空行合并
       .replace(/\n{2,}/g, "\n")
       .trim()
-  );
-};
+  )
+}

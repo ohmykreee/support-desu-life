@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import { register } from "swiper/element/bundle";
+  import { onMount } from "svelte"
+  import { register } from "swiper/element/bundle"
 
   onMount(() => {
-    register();
-  });
+    register()
+  })
 
   type Image = {
-    src: string;
-    alt: string;
-  };
-  export let images: Image[] = [];
+    src: string
+    alt: string
+  }
+  export let images: Image[] = []
 </script>
 
 <swiper-container navigation="true" scrollbar="true" autoplay="true" loop="true">

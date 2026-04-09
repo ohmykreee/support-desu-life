@@ -1,20 +1,20 @@
 <script lang="ts">
-  import Icon from "@iconify/svelte";
-  import { onMount } from "svelte";
-  export let type: "default" | "primary" | "success" | "info" | "warning" | "danger" = "default";
-  export let noIcon: boolean = false;
-  export let style: "simple" | "modern" | "flat" | "disabled" = "simple";
+  import Icon from "@iconify/svelte"
+  import { onMount } from "svelte"
+  export let type: "default" | "primary" | "success" | "info" | "warning" | "danger" = "default"
+  export let noIcon: boolean = false
+  export let style: "simple" | "modern" | "flat" | "disabled" = "simple"
 
   // 配色和icon映射，增加深色条色值和字体色
   const classMap: Record<
     string,
     {
-      color: string;
-      bg: string;
-      icon?: string;
-      bar: string;
-      text: string;
-      modernText: string;
+      color: string
+      bg: string
+      icon?: string
+      bar: string
+      text: string
+      modernText: string
     }
   > = {
     default: {
@@ -65,21 +65,21 @@
       text: "var(--note-color-text, #222)",
       modernText: "#8a1f1f"
     }
-  };
+  }
 
-  $: current = classMap[type] || classMap.default;
+  $: current = classMap[type] || classMap.default
 
-  let container: HTMLDivElement;
+  let container: HTMLDivElement
   onMount(() => {
-    const links = container.querySelectorAll('a[href^="http"]');
+    const links = container.querySelectorAll('a[href^="http"]')
     links.forEach((link) => {
       // 可根据是否是外链来判断是否加 target
       if (link instanceof HTMLAnchorElement && !link.href.includes(location.hostname)) {
-        link.setAttribute("target", "_blank");
-        link.setAttribute("rel", "noopener noreferrer");
+        link.setAttribute("target", "_blank")
+        link.setAttribute("rel", "noopener noreferrer")
       }
-    });
-  });
+    })
+  })
 </script>
 
 <div

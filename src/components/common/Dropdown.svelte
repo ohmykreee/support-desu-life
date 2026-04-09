@@ -1,30 +1,30 @@
 <script lang="ts">
-  import { fade } from "svelte/transition";
+  import { fade } from "svelte/transition"
 
-  export let dropdownTrigger: "hover" | "click" | "focus" = "hover";
+  export let dropdownTrigger: "hover" | "click" | "focus" = "hover"
 
-  let open = false;
-  let hideTimeout: NodeJS.Timeout | null = null;
+  let open = false
+  let hideTimeout: NodeJS.Timeout | null = null
 
   function toggle(type: "hover" | "click" | "focus" | "force") {
     if (type === dropdownTrigger) {
-      open = !open;
+      open = !open
     }
   }
 
   function show(type: "hover" | "click" | "focus" | "force") {
     if (type === dropdownTrigger || type === "force") {
-      if (hideTimeout) clearTimeout(hideTimeout);
-      open = true;
+      if (hideTimeout) clearTimeout(hideTimeout)
+      open = true
     }
   }
 
   function hide(type: "hover" | "click" | "focus" | "force") {
     if (type === dropdownTrigger || type === "force") {
-      if (hideTimeout) clearTimeout(hideTimeout);
+      if (hideTimeout) clearTimeout(hideTimeout)
       hideTimeout = setTimeout(() => {
-        open = false;
-      }, 200);
+        open = false
+      }, 200)
     }
   }
 </script>

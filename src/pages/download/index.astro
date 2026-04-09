@@ -1,13 +1,13 @@
 ---
-import Layout from "@/layouts/default/index.astro";
-import DownloadBanner from "@/components/sections/DownloadBanner.astro";
-import SearchFirmware from "@/components/common/SearchFirmware.svelte";
-import Seo from "@/components/common/Seo.astro";
+import Layout from "@/layouts/default/index.astro"
+import DownloadBanner from "@/components/sections/DownloadBanner.astro"
+import SearchFirmware from "@/components/common/SearchFirmware.svelte"
+import Seo from "@/components/common/Seo.astro"
 
-import { getCollection } from "astro:content";
-const firmware = await getCollection("firmware");
-const response = await fetch("https://assets.desu.life/device/firmware/device_versions.json");
-const data = await response.json();
+import { getCollection } from "astro:content"
+const firmware = await getCollection("firmware")
+const response = await fetch("https://assets.desu.life/device/firmware/device_versions.json")
+const data = await response.json()
 
 const firmwareList = firmware.map((item) => {
   if (item.data.local) {
@@ -16,17 +16,17 @@ const firmwareList = firmware.map((item) => {
       label: item.data.label,
       device: item.data.device,
       version: item.data.version
-    };
+    }
   } else {
-    const firmwareData = data.find((v: any) => v.device === item.data.device);
+    const firmwareData = data.find((v: any) => v.device === item.data.device)
     return {
       id: item.id,
       label: firmwareData?.label ?? item.data.label,
       device: item.data.device,
       version: firmwareData?.versions[0]?.version ?? item.data.version
-    };
+    }
   }
-});
+})
 ---
 
 <Seo

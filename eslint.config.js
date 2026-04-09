@@ -1,13 +1,13 @@
-import eslintPluginAstro from "eslint-plugin-astro";
-import { includeIgnoreFile } from "@eslint/compat";
-import path from "node:path";
-import js from "@eslint/js";
-import svelte from "eslint-plugin-svelte";
-import ts from "typescript-eslint";
-import prettier from "eslint-config-prettier";
-import svelteConfig from "./svelte.config.js";
+import eslintPluginAstro from "eslint-plugin-astro"
+import { includeIgnoreFile } from "@eslint/compat"
+import path from "node:path"
+import js from "@eslint/js"
+import svelte from "eslint-plugin-svelte"
+import ts from "typescript-eslint"
+import prettier from "eslint-config-prettier"
+import svelteConfig from "./svelte.config.js"
 
-const gitignorePath = path.resolve(import.meta.dirname, ".gitignore");
+const gitignorePath = path.resolve(import.meta.dirname, ".gitignore")
 
 export default [
   includeIgnoreFile(gitignorePath),
@@ -48,4 +48,4 @@ export default [
     }
   },
   prettier
-];
+]

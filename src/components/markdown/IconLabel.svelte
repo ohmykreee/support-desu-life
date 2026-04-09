@@ -1,9 +1,9 @@
 <script lang="ts">
-  import Icon from "@iconify/svelte";
-  export let icon: string;
-  export let label: string;
-  export let size: "small" | "medium" | "large" = "medium";
-  export let m_size: "small" | "medium" | "large" = size;
+  import Icon from "@iconify/svelte"
+  export let icon: string
+  export let label: string
+  export let size: "small" | "medium" | "large" = "medium"
+  export let m_size: "small" | "medium" | "large" = size
 </script>
 
 <div class="icon-label icon-label__{size} __scope__ icon-label-mobile__{m_size}">

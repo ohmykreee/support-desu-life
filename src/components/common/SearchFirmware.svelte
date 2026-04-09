@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { fade } from "svelte/transition";
-  let props = $props();
-  let data: any[] = props.data || [];
+  import { fade } from "svelte/transition"
+  let props = $props()
+  let data: any[] = props.data || []
 
-  let searchValue = $state("");
-  let showResultCount = $derived(searchValue.length > 0);
+  let searchValue = $state("")
+  let showResultCount = $derived(searchValue.length > 0)
   let result = $derived(
     searchValue
       ? data.filter((item: any) =>
@@ -13,8 +13,8 @@
           )
         )
       : []
-  );
-  let resultCount = $derived(result.length);
+  )
+  let resultCount = $derived(result.length)
 </script>
 
 <div class="search-box" role="search">

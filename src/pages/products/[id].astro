@@ -1,29 +1,29 @@
 ---
-import Seo from "@/components/common/Seo.astro";
-import Layout from "@/layouts/default/index.astro";
-import { getCollection, render } from "astro:content";
+import Seo from "@/components/common/Seo.astro"
+import Layout from "@/layouts/default/index.astro"
+import { getCollection, render } from "astro:content"
 
 export async function getStaticPaths() {
-  const products = await getCollection("products");
+  const products = await getCollection("products")
   return products.map((product) => {
-    const slug = product.data.slug;
-    let id: string;
+    const slug = product.data.slug
+    let id: string
 
     if (slug) {
-      id = slug;
+      id = slug
     } else {
-      const raw = product.id;
-      id = raw.split("/").pop()?.split(".")[0] ?? raw;
+      const raw = product.id
+      id = raw.split("/").pop()?.split(".")[0] ?? raw
     }
 
     return {
       params: { id },
       props: { product }
-    };
-  });
+    }
+  })
 }
-const { product } = Astro.props;
-const { Content } = await render(product);
+const { product } = Astro.props
+const { Content } = await render(product)
 ---
 
 <Seo

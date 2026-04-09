@@ -1,23 +1,23 @@
 ---
-import Seo from "@/components/common/Seo.astro";
-import Layout from "@/layouts/default/index.astro";
-import SearchContent from "@/components/sections/SearchContent.svelte";
-import { getCollection } from "astro:content";
-import { extractMdxText } from "@/utils/extractMdxText";
+import Seo from "@/components/common/Seo.astro"
+import Layout from "@/layouts/default/index.astro"
+import SearchContent from "@/components/sections/SearchContent.svelte"
+import { getCollection } from "astro:content"
+import { extractMdxText } from "@/utils/extractMdxText"
 
 interface SearchItem {
-  id: string;
-  title: string;
-  type: "post" | "firmware";
-  slug?: string;
-  content?: string;
-  description?: string;
-  device?: string;
-  version?: string;
+  id: string
+  title: string
+  type: "post" | "firmware"
+  slug?: string
+  content?: string
+  description?: string
+  device?: string
+  version?: string
 }
 
-const posts = await getCollection("posts");
-const firmware = await getCollection("firmware");
+const posts = await getCollection("posts")
+const firmware = await getCollection("firmware")
 
 const searchData: SearchItem[] = [
   ...posts.map((post) => ({
@@ -35,7 +35,7 @@ const searchData: SearchItem[] = [
     device: firmware.data.device,
     version: firmware.data.version
   }))
-];
+]
 ---
 
 <Seo title="搜索">

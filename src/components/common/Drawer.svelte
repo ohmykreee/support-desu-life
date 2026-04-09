@@ -1,27 +1,27 @@
 <script lang="ts">
-  import { fade, fly } from "svelte/transition";
-  import { createEventDispatcher, onMount } from "svelte";
+  import { fade, fly } from "svelte/transition"
+  import { createEventDispatcher, onMount } from "svelte"
 
-  let isOpen = false;
-  export let direction: "left" | "right" | "top" | "bottom" = "right";
-  export let closeOnOverlayClick = true;
-  export let showCloseButton = true;
+  let isOpen = false
+  export let direction: "left" | "right" | "top" | "bottom" = "right"
+  export let closeOnOverlayClick = true
+  export let showCloseButton = true
 
-  const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher()
 
   function handleClose() {
-    isOpen = false;
-    dispatch("close");
+    isOpen = false
+    dispatch("close")
   }
 
   function handleOverlayClick() {
     if (closeOnOverlayClick) {
-      handleClose();
+      handleClose()
     }
   }
 
   export function toggleDrawer() {
-    isOpen = !isOpen;
+    isOpen = !isOpen
   }
 
   $: slideDirection = {
@@ -29,19 +29,19 @@
     right: { x: "100%", duration: 200 },
     top: { y: "-100%", duration: 200 },
     bottom: { y: "100%", duration: 200 }
-  }[direction];
+  }[direction]
 
   onMount(() => {
     return () => {
-      document.body.classList.remove("drawer-open");
-    };
-  });
+      document.body.classList.remove("drawer-open")
+    }
+  })
 
   $: if (typeof document !== "undefined") {
     if (isOpen) {
-      document.body.classList.add("drawer-open");
+      document.body.classList.add("drawer-open")
     } else {
-      document.body.classList.remove("drawer-open");
+      document.body.classList.remove("drawer-open")
     }
   }
 </script>

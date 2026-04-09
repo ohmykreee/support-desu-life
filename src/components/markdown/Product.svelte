@@ -1,16 +1,16 @@
 <script lang="ts">
-  import Swiper from "@/components/common/Swiper.svelte";
+  import Swiper from "@/components/common/Swiper.svelte"
   type Image = {
-    src: string;
-    alt: string;
-  };
-  export let images: Image[] = [];
-  export let buyLink: string;
-  export let manualLink: string;
-  export let disableBuyButton: boolean = false;
-  export let hideBuyButton: boolean = false;
-  export let hideManualButton: boolean = false;
-  export let buyButtonText: string = "立即购买";
+    src: string
+    alt: string
+  }
+  export let images: Image[] = []
+  export let buyLink: string
+  export let manualLink: string
+  export let disableBuyButton: boolean = false
+  export let hideBuyButton: boolean = false
+  export let hideManualButton: boolean = false
+  export let buyButtonText: string = "立即购买"
 </script>
 
 <div class="product-container">

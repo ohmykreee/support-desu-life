@@ -1,52 +1,52 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import Icon from "@iconify/svelte";
+  import { onMount } from "svelte"
+  import Icon from "@iconify/svelte"
   interface SearchItem {
-    id: string;
-    title: string;
-    type: "post" | "firmware";
-    slug?: string;
-    content?: string;
-    description?: string;
-    device?: string;
-    version?: string;
+    id: string
+    title: string
+    type: "post" | "firmware"
+    slug?: string
+    content?: string
+    description?: string
+    device?: string
+    version?: string
   }
 
-  let props = $props<{ data: SearchItem[] }>();
-  let data = props.data || [];
+  let props = $props<{ data: SearchItem[] }>()
+  let data = props.data || []
 
-  let searchValue = $state("");
-  let results = $state<SearchItem[]>([]);
+  let searchValue = $state("")
+  let results = $state<SearchItem[]>([])
 
-  let searchDone = $state(false);
+  let searchDone = $state(false)
 
   function handleSearch(e: Event | null = null) {
-    e?.preventDefault();
+    e?.preventDefault()
     if (!searchValue.trim()) {
-      results = [];
-      return;
+      results = []
+      return
     }
     results = data.filter((item: SearchItem) => {
       if (item.type === "post") {
         return [item.title, item.content, item.description].some((value) =>
           value?.toLowerCase().includes(searchValue.toLowerCase().trim())
-        );
+        )
       } else {
         return [item.title, item.device?.replace(/_/g, " ")].some((value) =>
           value?.toLowerCase().includes(searchValue.toLowerCase().trim())
-        );
+        )
       }
-    });
-    searchDone = true;
+    })
+    searchDone = true
   }
 
   onMount(() => {
-    const params = new URLSearchParams(window.location.search);
-    searchValue = params.get("q") ?? "";
+    const params = new URLSearchParams(window.location.search)
+    searchValue = params.get("q") ?? ""
     if (searchValue) {
-      handleSearch();
+      handleSearch()
     }
-  });
+  })
 </script>
 
 <div class="search-box">
