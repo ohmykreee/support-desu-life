@@ -28,8 +28,10 @@
         <a
           href={disableBuyButton ? undefined : buyLink}
           class="product-button {disableBuyButton ? 'disabled' : ''}"
-          target="_blank">{buyButtonText}</a
+          target="_blank"
         >
+          {buyButtonText}
+        </a>
       {/if}
       {#if !hideManualButton}
         <a href={manualLink} class="product-button">使用说明</a>

@@ -90,15 +90,15 @@ function getSize(size: number | string): string {
       <div class="firmware-meta">
         <span class="device">设备: {device}</span>
         <span class="version">版本: {version}</span>
-        <span class="date"
-          >发布日期: {
+        <span class="date">
+          发布日期: {
             new Date(information.date).toLocaleDateString("zh-CN", {
               year: "numeric",
               month: "long",
               day: "numeric"
             })
-          }</span
-        >
+          }
+        </span>
       </div>
     </div>
     <div class="firmware-download">

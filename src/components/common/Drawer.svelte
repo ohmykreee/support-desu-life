@@ -82,8 +82,10 @@
           <button
             class="close-button close-button__position-{direction}"
             type="button"
-            on:click={handleClose}>×</button
+            on:click={handleClose}
           >
+            ×
+          </button>
         {/if}
       </div>
       <div class="drawer-content">
