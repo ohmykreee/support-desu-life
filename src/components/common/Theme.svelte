@@ -31,7 +31,6 @@
     untrack(() => {
       theme = currTheme;
     });
-    console.log('triggered: ' + $state.snapshot(theme))
   })
 </script>
 

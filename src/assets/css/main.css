@@ -1,7 +1,7 @@
 @import "./color.css";
 @import "./tailwind.css";
 
-:root {
+body {
   color: var(--color-text);
   background-color: var(--color-background);
 }

@@ -51,5 +51,10 @@
 }
 
 .light {
-  
+  --color-background: #FFFFFF;
+  --color-background-secondary: #F5F5F7; 
+  --color-background-code: #F8F8F8;
+  --color-text: #1D1D1F;
+  --color-text-primary: #000000;
+  --color-text-secondary: #86868B;
 }
