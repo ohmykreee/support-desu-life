@@ -14,7 +14,8 @@
 </script>
 
 <swiper-container navigation="true" scrollbar="true" autoplay="true" loop="true">
-  {#each images as image (image.alt)}
+  <!-- TODO: Ugly fix: 尽量不要用自增 i 作为 each 的 key -->
+  {#each images as image, i (i)}
     <swiper-slide class="swiper-slide">
       <img src={image.src} alt={image.alt} class="swiper-slide-img" />
     </swiper-slide>

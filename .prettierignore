@@ -8,3 +8,6 @@ bun.lockb
 
 # Miscellaneous
 /static/
+
+# MDX file
+*.mdx
