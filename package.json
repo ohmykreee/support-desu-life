@@ -26,6 +26,8 @@
     "vue": "^3.5.14"
   },
   "devDependencies": {
+    "@eslint/compat": "^2.0.5",
+    "@eslint/js": "^10.0.1",
     "@iconify-json/bi": "^1.2.4",
     "@iconify-json/devicon": "^1.2.24",
     "@iconify-json/solar": "^1.2.2",
@@ -33,10 +35,13 @@
     "@tailwindcss/typography": "^0.5.16",
     "@typescript-eslint/parser": "^8.58.1",
     "eslint": "^10.2.0",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^1.7.0",
+    "eslint-plugin-svelte": "^3.17.0",
     "prettier": "3.8.1",
     "prettier-plugin-astro": "0.14.1",
     "prettier-plugin-svelte": "3.5.1",
-    "prettier-plugin-tailwindcss": "0.7.2"
+    "prettier-plugin-tailwindcss": "0.7.2",
+    "typescript-eslint": "^8.58.1"
   }
 }
