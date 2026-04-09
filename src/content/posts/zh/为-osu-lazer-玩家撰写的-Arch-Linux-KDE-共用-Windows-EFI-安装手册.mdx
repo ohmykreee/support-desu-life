@@ -7,7 +7,7 @@ date: 2025-06-01 17:19
 description: 适用于：已存在 Windows 系统、EFI 分区保留、使用 LVM 安装 Arch Linux 并使用 KDE 桌面环境
 ---
 
-import Note from '@/components/markdown/Note.svelte'
+import Note from "@/components/markdown/Note.svelte";
 
 ## 为 osu!lazer 玩家撰写的 Arch Linux + KDE + 共用 Windows EFI 安装手册
 
@@ -16,11 +16,11 @@ import Note from '@/components/markdown/Note.svelte'
 ---
 
 <Note type="danger" style="flat" client:visible>
-本手册不包含准备分区内容，请自行使用PE分割现有分区或使用全新硬盘
+  本手册不包含准备分区内容，请自行使用PE分割现有分区或使用全新硬盘
 </Note>
 
 <Note type="warning" style="flat" client:visible>
-本手册不会详细解释每个步骤的作用，请自行查阅。
+  本手册不会详细解释每个步骤的作用，请自行查阅。
 </Note>
 
 ---
@@ -94,7 +94,7 @@ swapon /dev/archvg/swap
 ```
 
 <Note type="warning" style="flat" client:visible>
- `/boot/efi` 应该对应 EFI 分区根目录，而不是其中的 `/EFI` 子目录，否则 `grub-install` 会失败！
+  `/boot/efi` 应该对应 EFI 分区根目录，而不是其中的 `/EFI` 子目录，否则 `grub-install` 会失败！
 </Note>
 
 ---
@@ -114,7 +114,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
 <Note type="warning" style="flat" client:visible>
-每次修改或重挂载 `/mnt` 内的结构（如新增挂载 `/boot/efi`）都需要重新 `genfstab`。
+  每次修改或重挂载 `/mnt` 内的结构（如新增挂载 `/boot/efi`）都需要重新 `genfstab`。
 </Note>
 
 ---
@@ -188,7 +188,8 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 <Note type="warning" style="flat" client:visible>
- `grub-install` 会在 `/boot/efi/EFI/ArchLinux/grubx64.efi` 生成启动文件并绑定当前的 lvmid。重建 LVM 后必须重新执行！否则重启报错 `lvmid not found`。
+  `grub-install` 会在 `/boot/efi/EFI/ArchLinux/grubx64.efi` 生成启动文件并绑定当前的 lvmid。重建 LVM
+  后必须重新执行！否则重启报错 `lvmid not found`。
 </Note>
 
 ---
@@ -232,7 +233,7 @@ sudo pacman -S plasma kde-applications xdg-desktop-portal-kde qt5-wayland qt6-wa
 #### 安装显卡驱动(没有的显卡就不要安装！)
 
 <Note type="warning" style="flat" client:visible>
-启用了集显的话，无论是否使用，也需要把集显的驱动打上！
+  启用了集显的话，无论是否使用，也需要把集显的驱动打上！
 </Note>
 
 amd：
@@ -244,14 +245,14 @@ sudo pacman -S mesa vulkan-radeon libva-mesa-driver libva-utils
 intel：
 
 ```
-intel: 
+intel:
 sudo pacman -S mesa vulkan-intel libva-intel-driver libva-utils
 ```
 
 nvidia：
 
 <Note type="danger" style="flat" client:visible>
-注意！较新的50系显卡需要安装nvidia-open-dkms而不是nvidia或nvidia-dkms！
+  注意！较新的50系显卡需要安装nvidia-open-dkms而不是nvidia或nvidia-dkms！
 </Note>
 
 ```
@@ -317,7 +318,7 @@ https://github.com/topics/fcitx5-theme
 ```
 
 <Note type="info" style="flat" client:visible>
-注意：即使在启动后fcitx5提示不要设置GTK_IM_MODULE&QT_IM_MODULE，但在实际使用中还是需要这两个配置，否则在chrome等应用程序中，输入法不会正常工作。
+  注意：即使在启动后fcitx5提示不要设置GTK_IM_MODULE&QT_IM_MODULE，但在实际使用中还是需要这两个配置，否则在chrome等应用程序中，输入法不会正常工作。
 </Note>
 
 ---
@@ -330,11 +331,11 @@ sudo systemctl enable sddm
 ```
 
 <Note type="warning" style="flat" client:visible>
-登录黑屏 → tty 中输入 `journalctl -xe` 排查
+  登录黑屏 → tty 中输入 `journalctl -xe` 排查
 </Note>
 
 <Note type="danger" style="flat" client:visible>
-在安装完显示驱动之前启动sddm是很危险的行为，不要这么做！
+  在安装完显示驱动之前启动sddm是很危险的行为，不要这么做！
 </Note>
 
 ---
@@ -354,7 +355,7 @@ sudo systemctl enable sddm
 禁用hid_uclogic
 
 ```
-sudo rmmod hid_uclogic 
+sudo rmmod hid_uclogic
 ```
 
 如还是无法识别，则将其添加到BlackList中：
@@ -470,6 +471,7 @@ systemctl --user restart pipewire pipewire-pulse
 ps -o pid,comm,rtprio,ni,cls,cmd -p $(pidof pipewire)
 
 确认 `RTPRIO` 是 88 且 `CLS` 是 `RR`，即为成功 ✅
+
 </Note>
 
 查看PipeWire状态：
@@ -558,11 +560,11 @@ context.properties = {
 ## 🎉 完成！
 
 <Note type="info" style="flat" client:visible>
-AppImage包管理器可以在KDE的软件中心中寻找Gear Lever
+  AppImage包管理器可以在KDE的软件中心中寻找Gear Lever
 </Note>
 
 <Note type="info" style="flat" client:visible>
-osu!lazer的运行文件夹可以在挂载NTFS分区后与windows版的运行文件夹共用
+  osu!lazer的运行文件夹可以在挂载NTFS分区后与windows版的运行文件夹共用
 </Note>
 
 ---

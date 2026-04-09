@@ -26,15 +26,15 @@ const searchData: SearchItem[] = [
     type: "post" as const,
     slug: post.data.slug,
     content: extractMdxText(post.body),
-    description: post.data.description,
+    description: post.data.description
   })),
   ...firmware.map((firmware) => ({
     id: firmware.id,
     title: firmware.data.label,
     type: "firmware" as const,
     device: firmware.data.device,
-    version: firmware.data.version,
-  })),
+    version: firmware.data.version
+  }))
 ];
 ---
 

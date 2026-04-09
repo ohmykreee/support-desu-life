@@ -14,14 +14,14 @@ const posts = await getCollection("posts");
         <li class="recent-posts__empty">暂无资讯</li>
       ) : (
         posts
-          .sort(
-            (a, b) =>
-              new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
-          )
+          .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
           .slice(0, 3)
           .map((post) => (
             <li>
-              <a href={`/posts/${post.data.slug || (post.id.split('/').pop()?.split('.')[0] ?? post.id)}`} class="recent-posts__item">
+              <a
+                href={`/posts/${post.data.slug || (post.id.split("/").pop()?.split(".")[0] ?? post.id)}`}
+                class="recent-posts__item"
+              >
                 <div class="recent-post__cover">
                   <img src={post.data.cover} alt={post.data.title} width="200" height="120" />
                 </div>
@@ -39,7 +39,7 @@ const posts = await getCollection("posts");
 </div>
 
 <style>
-.recent-posts {
+  .recent-posts {
     width: 60vw;
     margin: 0 auto;
     padding: 3rem 0;
@@ -47,13 +47,13 @@ const posts = await getCollection("posts");
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-.recent-posts-title {
+  }
+  .recent-posts-title {
     font-size: 2rem;
     font-weight: 600;
     color: #fff;
-}
-.recent-posts-list {
+  }
+  .recent-posts-list {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -61,8 +61,8 @@ const posts = await getCollection("posts");
     padding: 0;
     list-style: none;
     margin-top: 1rem;
-}
-.recent-posts__item {
+  }
+  .recent-posts__item {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -73,14 +73,16 @@ const posts = await getCollection("posts");
     border-radius: 12px;
     background: #181818cc;
     box-shadow: 0 2px 8px #0002;
-    transition: box-shadow 0.2s, border 0.2s;
+    transition:
+      box-shadow 0.2s,
+      border 0.2s;
     text-decoration: none;
-}
-.recent-posts__item:hover {
+  }
+  .recent-posts__item:hover {
     border: 1px solid #fff;
     box-shadow: 0 4px 16px #0004;
-}
-.recent-post__cover {
+  }
+  .recent-post__cover {
     width: 200px;
     height: 120px;
     border-radius: 8px;
@@ -90,78 +92,78 @@ const posts = await getCollection("posts");
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.recent-post__cover img {
+  }
+  .recent-post__cover img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-.recent-post__content {
+  }
+  .recent-post__content {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-}
-.recent-post__date {
+  }
+  .recent-post__date {
     color: #aaa;
-    font-size: .9rem;
-}
-.recent-post__title {
+    font-size: 0.9rem;
+  }
+  .recent-post__title {
     color: #fff;
     font-size: 1.2rem;
     font-weight: bold;
-}
-.recent-post__description {
+  }
+  .recent-post__description {
     color: #ccc;
-    font-size: .9rem;
+    font-size: 0.9rem;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-}
-.recent-posts__empty {
+  }
+  .recent-posts__empty {
     color: #aaa;
     text-align: center;
     padding: 2rem 0;
     font-size: 1.2rem;
-}
-.recent-posts-description {
+  }
+  .recent-posts-description {
     font-size: 1rem;
     color: #bbb;
     margin: 0.5rem 0 0 0;
     text-align: center;
     letter-spacing: 0.5px;
-}
-.recent-posts-description a {
+  }
+  .recent-posts-description a {
     color: var(--color-primary);
     text-decoration: underline;
-}
-/* .recent-posts-description a:hover {
+  }
+  /* .recent-posts-description a:hover {
     text-decoration: underline;
 } */
-@media (max-width: 900px) {
+  @media (max-width: 900px) {
     .recent-posts {
-        width: 95vw;
-        padding: 0 2rem;
+      width: 95vw;
+      padding: 0 2rem;
     }
     .recent-posts__item {
-        flex-direction: column;
-        align-items: flex-start;
-        max-width: 100vw;
-        width: 100%;
+      flex-direction: column;
+      align-items: flex-start;
+      max-width: 100vw;
+      width: 100%;
     }
     .recent-post__cover {
-        width: 100%;
-        height: 180px;
+      width: 100%;
+      height: 180px;
     }
     .recent-posts-description {
-        font-size: 0.95rem;
+      font-size: 0.95rem;
     }
-}
-@media (max-width: 600px) {
+  }
+  @media (max-width: 600px) {
     .recent-posts-description {
-        font-size: 0.85rem;
+      font-size: 0.85rem;
     }
-}
+  }
 </style>

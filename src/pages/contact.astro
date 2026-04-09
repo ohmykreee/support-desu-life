@@ -1,7 +1,7 @@
 ---
 import Seo from "@/components/common/Seo.astro";
-import Layout from '@/layouts/default/index.astro';
-import { Content } from "@/content/data/contact.mdx"
+import Layout from "@/layouts/default/index.astro";
+import { Content } from "@/content/data/contact.mdx";
 ---
 
 <Seo
@@ -11,17 +11,17 @@ import { Content } from "@/content/data/contact.mdx"
 />
 
 <Layout>
-    <div class="contact-container">
-        <div class="prose dark:prose-invert w-[60vw] max-w-none">
-            <Content />
-        </div>
+  <div class="contact-container">
+    <div class="prose dark:prose-invert w-[60vw] max-w-none">
+      <Content />
     </div>
+  </div>
 </Layout>
 
 <style>
-    .contact-container {
-        width: 70vw;
-        margin: 0 auto;
-        padding: 2rem 0;
-    }
+  .contact-container {
+    width: 70vw;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
 </style>

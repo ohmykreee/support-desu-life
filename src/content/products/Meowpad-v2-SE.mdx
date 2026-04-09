@@ -1,42 +1,41 @@
 ---
 title: "Meowpad V2 SE"
 preview:
-    - "/images/devices/Meowpad_v2_se.png"
-    - "/images/devices/Meowpad_v2_se.webp"
+  - "/images/devices/Meowpad_v2_se.png"
+  - "/images/devices/Meowpad_v2_se.webp"
 slug: meowpad-v2-se
 weight: 2
 ---
 
-
 import Product from "@/components/markdown/Product.svelte";
 import IconLabel from "@/components/markdown/IconLabel.svelte";
 
-<Product client:load
-    images={[
-        {
-            src: "/images/products/meowpad_v2_se/1.jpg",
-            alt: "Meowpad v2 SE"
-        },
-        {
-            src: "/images/products/meowpad_v2_se/top.jpg",
-            alt: "Meowpad v2 SE 俯视图"
-        },
-        {
-            src: "/images/products/meowpad_v2_se/white.jpg",
-            alt: "Meowpad v2 SE 白色"
-        },
-    ]}
-    disableBuyButton={true}
-    hideManualButton
-    buyButtonText="已停产"
-    >
-    <h1 slot="title">Meowpad v2 SE</h1>
-    <p slot="description">第二代猫盘的青春版，是具有标准性能的磁轴小键盘。</p>
-    <div class="product-icon-labels">
-        <IconLabel icon="bi:usb-c" label="USB-C 接口" size="large" client:load />
-        <IconLabel icon="bi:speedometer" label="1ms 高速响应" size="large" client:load />
-        <IconLabel icon="bi:lightbulb" label="可调背光" size="large" client:load />
-        <IconLabel icon="bi:gear-wide-connected" label="自定义触发" size="large" client:load />
-    </div>
+<Product
+  client:load
+  images={[
+    {
+      src: "/images/products/meowpad_v2_se/1.jpg",
+      alt: "Meowpad v2 SE"
+    },
+    {
+      src: "/images/products/meowpad_v2_se/top.jpg",
+      alt: "Meowpad v2 SE 俯视图"
+    },
+    {
+      src: "/images/products/meowpad_v2_se/white.jpg",
+      alt: "Meowpad v2 SE 白色"
+    }
+  ]}
+  disableBuyButton={true}
+  hideManualButton
+  buyButtonText="已停产"
+>
+  <h1 slot="title">Meowpad v2 SE</h1>
+  <p slot="description">第二代猫盘的青春版，是具有标准性能的磁轴小键盘。</p>
+  <div class="product-icon-labels">
+    <IconLabel icon="bi:usb-c" label="USB-C 接口" size="large" client:load />
+    <IconLabel icon="bi:speedometer" label="1ms 高速响应" size="large" client:load />
+    <IconLabel icon="bi:lightbulb" label="可调背光" size="large" client:load />
+    <IconLabel icon="bi:gear-wide-connected" label="自定义触发" size="large" client:load />
+  </div>
 </Product>
-

@@ -1,377 +1,391 @@
 ---
-import Layout from '@/layouts/default/index.astro';
-import { getCollection, render } from 'astro:content';
-import { Icon } from 'astro-icon/components';
+import Layout from "@/layouts/default/index.astro";
+import { getCollection, render } from "astro:content";
+import { Icon } from "astro-icon/components";
 import Dropdown from "@/components/common/Dropdown.svelte";
 import Drawer from "@/components/common/Drawer.svelte";
-import Seo from '@/components/common/Seo.astro';
+import Seo from "@/components/common/Seo.astro";
 
 export async function getStaticPaths() {
-    const firmwares = await getCollection('firmware');
-    return firmwares.map((firmware) => {
-        const id = firmware.id;
+  const firmwares = await getCollection("firmware");
+  return firmwares.map((firmware) => {
+    const id = firmware.id;
 
-        return {
-            params: { id },
-            props: { firmware },
-        };
-    });
+    return {
+      params: { id },
+      props: { firmware }
+    };
+  });
 }
 
 const { firmware } = Astro.props;
 const { Content } = await render(firmware);
-const response = await fetch("https://assets.desu.life/device/firmware/device_versions.json")
-const data = await response.json()
+const response = await fetch("https://assets.desu.life/device/firmware/device_versions.json");
+const data = await response.json();
 const firmwareData = data.find((item: any) => item.device === firmware.data.device);
 
-let target: any
+let target: any;
 if (!firmware.data.local && firmwareData) {
-    // 查找远程数据对应项
-    if (firmwareData && firmwareData.versions.length > 0) {
-        const versionItem = firmwareData.versions[0];
-        target = {
-            label: firmwareData.label,
-            device: firmwareData.device,
-            version: versionItem.version,
-            information: {
-                date: versionItem.information.date,
-                size: versionItem.information.size,
-                checksum: versionItem.information.checksum,
-                download_url: versionItem.information.download_url
-            },
-        };
-    }
-} else {
-    const item = firmware.data;
+  // 查找远程数据对应项
+  if (firmwareData && firmwareData.versions.length > 0) {
+    const versionItem = firmwareData.versions[0];
     target = {
-        label: item.label,
-        device: item.device,
-        version: item.version,
-        information: {
-            date: item.release_date,
-            size: item.size,
-            checksum: item.checksum,
-            download_url: item.download_url
-        },
+      label: firmwareData.label,
+      device: firmwareData.device,
+      version: versionItem.version,
+      information: {
+        date: versionItem.information.date,
+        size: versionItem.information.size,
+        checksum: versionItem.information.checksum,
+        download_url: versionItem.information.download_url
+      }
     };
+  }
+} else {
+  const item = firmware.data;
+  target = {
+    label: item.label,
+    device: item.device,
+    version: item.version,
+    information: {
+      date: item.release_date,
+      size: item.size,
+      checksum: item.checksum,
+      download_url: item.download_url
+    }
+  };
 }
 
-const { label, device, version, information } = target
+const { label, device, version, information } = target;
 
 function getSize(size: number | string): string {
-    if (typeof size !== "number") {
-        return size;
-    }
+  if (typeof size !== "number") {
+    return size;
+  }
 
-    const units = ["B", "KB", "MB", "GB", "TB"];
-    let unitIndex = 0;
+  const units = ["B", "KB", "MB", "GB", "TB"];
+  let unitIndex = 0;
 
-    while (size >= 1024 && unitIndex < units.length - 1) {
-        size /= 1024;
-        unitIndex++;
-    }
+  while (size >= 1024 && unitIndex < units.length - 1) {
+    size /= 1024;
+    unitIndex++;
+  }
 
-    return size.toFixed(2).replace(/\.00$/, "") + " " + units[unitIndex];
+  return size.toFixed(2).replace(/\.00$/, "") + " " + units[unitIndex];
 }
-
 ---
 
-<Seo
-  title={`${label}`}
-  description={"Kagami Studio 为您提供 " + label + " 的下载。"}
-/>
+<Seo title={`${label}`} description={"Kagami Studio 为您提供 " + label + " 的下载。"} />
 
 <Layout>
-    <div class="firmware-content">
-        <div class="back-button">
-            <a href="/download">
-                <Icon name="solar:arrow-left-linear" mode="external" />
-                返回下载页面
-            </a>
-        </div>
-        <div class="firmware-header">
-            <h1>{label}</h1>
-            <div class="firmware-meta">
-                <span class="device">设备: {device}</span>
-                <span class="version">版本: {version}</span>
-                <span class="date">发布日期: {new Date(information.date).toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-            </div>
-        </div>
-        <div class="firmware-download">
-            <a href={information.download_url} target="_blank" class="firmware-download__button">
-                <Icon name="solar:download-linear" mode="external" />
-                下载固件
-            </a>
-            <div class="firmware-download__size-and-check">
-                <div class="firmware-download__size">
-                    <span>大小: {getSize(information.size)}</span>
-                </div>
-                {information.checksum && (
-                    <>
-                        <div class="firmware-download__dropdown">
-                            <Dropdown dropdownTrigger="hover" client:load>
-                                <span slot="trigger" class="firmware-download__trigger">
-                                    <Icon name="solar:info-circle-linear" mode="external" /> 文件校验
-                                </span>
-                                <div slot="menu" class="firmware-download__checksum">
-                                    {Object.entries(information.checksum).map(([key, value]) => (
-                                        <div class="firmware-download__checksum-item">
-                                            <span class="firmware-download__checksum-label">{key}:</span>
-                                            <span class="firmware-download__checksum-value">{value}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </Dropdown>
-                        </div>
-                        <div class="firmware-download__drawer">
-                            <Drawer direction="bottom" closeOnOverlayClick showCloseButton client:load>
-                                <div slot="button-icon" class="firmware-download__drawer-btn">
-                                    <Icon name="solar:info-circle-linear" class="icon" mode="external" />
-                                    <span>文件校验</span>
-                                </div>
-                                <div>文件校验</div>
-                                <div class="firmware-download__checksum">
-                                    {Object.entries(information.checksum).map(([key, value]) => (
-                                        <div class="firmware-download__checksum-item">
-                                            <span class="firmware-download__checksum-label">{key}:</span>
-                                            <span class="firmware-download__checksum-value">{value}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </Drawer>
-                        </div>
-                    </>
-                )}
-            </div>
-        </div>
-        <div class="firmware-body">
-            <div class="prose dark:prose-invert">
-                <Content />
-            </div>
-        </div>
+  <div class="firmware-content">
+    <div class="back-button">
+      <a href="/download">
+        <Icon name="solar:arrow-left-linear" mode="external" />
+        返回下载页面
+      </a>
     </div>
+    <div class="firmware-header">
+      <h1>{label}</h1>
+      <div class="firmware-meta">
+        <span class="device">设备: {device}</span>
+        <span class="version">版本: {version}</span>
+        <span class="date"
+          >发布日期: {
+            new Date(information.date).toLocaleDateString("zh-CN", {
+              year: "numeric",
+              month: "long",
+              day: "numeric"
+            })
+          }</span
+        >
+      </div>
+    </div>
+    <div class="firmware-download">
+      <a href={information.download_url} target="_blank" class="firmware-download__button">
+        <Icon name="solar:download-linear" mode="external" />
+        下载固件
+      </a>
+      <div class="firmware-download__size-and-check">
+        <div class="firmware-download__size">
+          <span>大小: {getSize(information.size)}</span>
+        </div>
+        {
+          information.checksum && (
+            <>
+              <div class="firmware-download__dropdown">
+                <Dropdown dropdownTrigger="hover" client:load>
+                  <span slot="trigger" class="firmware-download__trigger">
+                    <Icon name="solar:info-circle-linear" mode="external" /> 文件校验
+                  </span>
+                  <div slot="menu" class="firmware-download__checksum">
+                    {Object.entries(information.checksum).map(([key, value]) => (
+                      <div class="firmware-download__checksum-item">
+                        <span class="firmware-download__checksum-label">{key}:</span>
+                        <span class="firmware-download__checksum-value">{value}</span>
+                      </div>
+                    ))}
+                  </div>
+                </Dropdown>
+              </div>
+              <div class="firmware-download__drawer">
+                <Drawer direction="bottom" closeOnOverlayClick showCloseButton client:load>
+                  <div slot="button-icon" class="firmware-download__drawer-btn">
+                    <Icon name="solar:info-circle-linear" class="icon" mode="external" />
+                    <span>文件校验</span>
+                  </div>
+                  <div>文件校验</div>
+                  <div class="firmware-download__checksum">
+                    {Object.entries(information.checksum).map(([key, value]) => (
+                      <div class="firmware-download__checksum-item">
+                        <span class="firmware-download__checksum-label">{key}:</span>
+                        <span class="firmware-download__checksum-value">{value}</span>
+                      </div>
+                    ))}
+                  </div>
+                </Drawer>
+              </div>
+            </>
+          )
+        }
+      </div>
+    </div>
+    <div class="firmware-body">
+      <div class="prose dark:prose-invert">
+        <Content />
+      </div>
+    </div>
+  </div>
 </Layout>
 
 <style>
+  .firmware-content {
+    width: 80vw;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+
+  .back-button {
+    margin-bottom: 2rem;
+  }
+
+  .back-button a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .back-button a:hover {
+    color: var(--color-primary-hover);
+  }
+
+  .firmware-header {
+    margin-bottom: 2rem;
+  }
+
+  .firmware-header h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--color-text-primary);
+  }
+
+  .firmware-meta {
+    display: flex;
+    gap: 1.5rem;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .firmware-body {
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .firmware-body :global(a) {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .firmware-body :global(a:hover) {
+    color: var(--color-primary-hover);
+  }
+
+  .firmware-download {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .firmware-download__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-button-secondary);
+    color: white;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .firmware-download__button:hover {
+    background-color: var(--color-button-secondary-hover);
+  }
+
+  .firmware-download__button:active {
+    background-color: var(--color-primary-active);
+  }
+
+  .firmware-download__size-and-check {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .firmware-download__size {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .firmware-download__dropdown {
+    display: block;
+  }
+
+  .firmware-download__trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: none;
+    border: none;
+    font: inherit;
+  }
+
+  .firmware-download__trigger:hover {
+    color: var(--color-primary);
+  }
+
+  .firmware-download__drawer-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    background: none;
+    border: none;
+    font: inherit;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .firmware-download__drawer-btn .icon {
+    font-size: 1.1em;
+  }
+
+  .firmware-download__checksum {
+    padding: 1rem;
+    min-width: 38rem;
+  }
+
+  .firmware-download__checksum-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    color: var(--color-text-secondary);
+    font-size: 0.98rem;
+  }
+
+  .firmware-download__checksum-label {
+    font-weight: 500;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .firmware-download__checksum-value {
+    color: var(--color-text-secondary);
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    flex: 1;
+  }
+
+  /* 响应式控制 */
+  .firmware-download__drawer {
+    display: none;
+  }
+  .firmware-download__dropdown {
+    display: block;
+  }
+  @media (max-width: 767px) {
     .firmware-content {
-        width: 80vw;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 2rem 0;
+      width: 80vw;
+      padding: 1rem 0.5rem;
     }
-
-    .back-button {
-        margin-bottom: 2rem;
-    }
-
-    .back-button a {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: var(--color-text-secondary);
-        text-decoration: none;
-        transition: all 0.2s ease;
-    }
-
-    .back-button a:hover {
-        color: var(--color-primary-hover);
-    }
-
-    .firmware-header {
-        margin-bottom: 2rem;
-    }
-
-    .firmware-header h1 {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-        color: var(--color-text-primary);
-    }
-
     .firmware-meta {
-        display: flex;
-        gap: 1.5rem;
-        color: var(--color-text-secondary);
-        font-size: 0.9rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
     }
-
-    .firmware-body {
-        margin-bottom: 2rem;
-        line-height: 1.6;
-    }
-
-    .firmware-body :global(a) {
-        color: var(--color-primary);
-        text-decoration: none;
-        transition: all 0.2s ease;
-    }
-
-    .firmware-body :global(a:hover) {
-        color: var(--color-primary-hover);
-    }
-
     .firmware-download {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-        margin: 2rem 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.5rem;
     }
-
     .firmware-download__button {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        background-color: var(--color-button-secondary);
-        color: white;
-        border-radius: 0.5rem;
-        text-decoration: none;
-        font-weight: 500;
-        transition: all 0.2s ease;
-        white-space: nowrap;
+      width: 100%;
+      justify-content: center;
+      font-size: 1.05rem;
     }
-
-    .firmware-download__button:hover {
-        background-color: var(--color-button-secondary-hover);
-    }
-
-    .firmware-download__button:active {
-        background-color: var(--color-primary-active);
-    }
-
     .firmware-download__size-and-check {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        width: 100%;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      gap: 0.5rem;
     }
-
     .firmware-download__size {
-        font-size: 1rem;
-        color: var(--color-text-secondary);
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      width: auto;
+      text-align: center;
+      font-size: 1rem;
+      justify-content: center;
     }
-
-    .firmware-download__dropdown {
-        display: block;
-    }
-
-    .firmware-download__trigger {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        color: var(--color-text-secondary);
-        cursor: pointer;
-        transition: all 0.2s ease;
-        background: none;
-        border: none;
-        font: inherit;
-    }
-
-    .firmware-download__trigger:hover {
-        color: var(--color-primary);
-    }
-
     .firmware-download__drawer-btn {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 1rem;
-        color: var(--color-text-secondary);
-        cursor: pointer;
-        background: none;
-        border: none;
-        font: inherit;
-        justify-content: center;
-        padding: 0;
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
     }
-
-    .firmware-download__drawer-btn .icon {
-        font-size: 1.1em;
-    }
-
     .firmware-download__checksum {
-        padding: 1rem;
-        min-width: 38rem;
+      min-width: 0;
+      width: 100%;
+      padding: 1rem 0.5rem;
     }
-
     .firmware-download__checksum-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 0.5rem;
-        padding: 0.5rem 0;
-        color: var(--color-text-secondary);
-        font-size: 0.98rem;
+      font-size: 0.95rem;
     }
-
-    .firmware-download__checksum-label {
-        font-weight: 500;
-        color: var(--color-text-primary);
-        white-space: nowrap;
-        flex-shrink: 0;
+    .firmware-download__drawer {
+      display: block;
     }
-
-    .firmware-download__checksum-value {
-        color: var(--color-text-secondary);
-        word-break: break-all;
-        overflow-wrap: anywhere;
-        flex: 1;
+    .firmware-download__dropdown {
+      display: none;
     }
-
-    /* 响应式控制 */
-    .firmware-download__drawer { display: none; }
-    .firmware-download__dropdown { display: block; }
-    @media (max-width: 767px) {
-        .firmware-content {
-            width: 80vw;
-            padding: 1rem 0.5rem;
-        }
-        .firmware-meta {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
-        }
-        .firmware-download {
-            flex-direction: column;
-            align-items: stretch;
-            gap: 0.5rem;
-        }
-        .firmware-download__button {
-            width: 100%;
-            justify-content: center;
-            font-size: 1.05rem;
-        }
-        .firmware-download__size-and-check {
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            gap: 0.5rem;
-        }
-        .firmware-download__size {
-            width: auto;
-            text-align: center;
-            font-size: 1rem;
-            justify-content: center;
-        }
-        .firmware-download__drawer-btn {
-            font-size: 1rem;
-            color: var(--color-text-secondary);
-            justify-content: center;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .firmware-download__checksum {
-            min-width: 0;
-            width: 100%;
-            padding: 1rem 0.5rem;
-        }
-        .firmware-download__checksum-item {
-            font-size: 0.95rem;
-        }
-        .firmware-download__drawer { display: block; }
-        .firmware-download__dropdown { display: none; }
-    }
+  }
 </style>

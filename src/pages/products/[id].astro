@@ -1,26 +1,26 @@
 ---
 import Seo from "@/components/common/Seo.astro";
-import Layout from '@/layouts/default/index.astro';
-import { getCollection, render } from 'astro:content';
+import Layout from "@/layouts/default/index.astro";
+import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-    const products = await getCollection('products');
-    return products.map((product) => {
-        const slug = product.data.slug;
-        let id: string;
+  const products = await getCollection("products");
+  return products.map((product) => {
+    const slug = product.data.slug;
+    let id: string;
 
-        if (slug) {
-            id = slug;
-        } else {
-            const raw = product.id;
-            id = raw.split('/').pop()?.split('.')[0] ?? raw;
-        }
+    if (slug) {
+      id = slug;
+    } else {
+      const raw = product.id;
+      id = raw.split("/").pop()?.split(".")[0] ?? raw;
+    }
 
-        return {
-            params: { id },
-            props: { product },
-        };
-    });
+    return {
+      params: { id },
+      props: { product }
+    };
+  });
 }
 const { product } = Astro.props;
 const { Content } = await render(product);
@@ -34,15 +34,15 @@ const { Content } = await render(product);
 />
 
 <Layout>
-    <div class="product-content">
-        <Content />
-    </div>
+  <div class="product-content">
+    <Content />
+  </div>
 </Layout>
 
 <style>
-    .product-content {
-        width: 80vw;
-        margin: 0 auto;
-        padding: 2rem 0;
-    }
+  .product-content {
+    width: 80vw;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
 </style>

@@ -20,17 +20,9 @@ export default defineConfig({
   //   defaultLocale: 'en',
   //   locales: ['en', 'zh-Hans', 'zh-Hant', 'ja', 'ko'],
   // },
-  integrations: [
-    vue(),
-    svelte(),
-    icon(),
-    mdx(),
-    sitemap({
-      
-    }),
-  ],
+  integrations: [vue(), svelte(), icon(), mdx(), sitemap({})],
 
   vite: {
-    plugins: [tailwindcss()],
-  },
+    plugins: [tailwindcss()]
+  }
 });

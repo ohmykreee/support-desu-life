@@ -102,7 +102,7 @@ const light = `
     BadgeAlpha: 1.0
     AvatarAlpha: 1.0
     ModIconAlpha: 1.0
-`
+`;
 
 const dark = `
     UsernameColor: #e6e6e6
@@ -208,6 +208,6 @@ const dark = `
     BadgeAlpha: 1.0
     AvatarAlpha: 1.0
     ModIconAlpha: 1.0
-`
+`;
 
-export const panel_default_config = { light, dark }
+export const panel_default_config = { light, dark };

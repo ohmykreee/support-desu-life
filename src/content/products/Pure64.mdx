@@ -1,39 +1,39 @@
 ---
 title: "Pure 64"
 preview:
-    - "/images/devices/pure64.png"
-    - "/images/devices/pure64.webp"
+  - "/images/devices/pure64.png"
+  - "/images/devices/pure64.webp"
 slug: pure64
 weight: 4
 ---
 
-
 import Product from "@/components/markdown/Product.svelte";
 import IconLabel from "@/components/markdown/IconLabel.svelte";
 
-<Product client:load
-    images={[
-        {
-            src: "/images/products/pure64/1.jpg",
-            alt: "Pure 64"
-        },
-        {
-            src: "/images/products/pure64/2.jpg",
-            alt: "Pure 64"
-        },
-    ]}
-    disableBuyButton={true}
-    hideManualButton
-    buyButtonText="已停产"
-    >
-    <h1 slot="title">Pure 64</h1>
-    <p slot="description">第一代Pure64的标准版，是具有高性能的泛用键盘，不包含壳体及键帽。</p>
-    <div class="product-icon-labels">
-        <IconLabel icon="solar:shield-check-linear" label="强稳定性" size="large" client:load />
-        <IconLabel icon="solar:stopwatch-broken" label="低延迟" size="large" client:load />
-        <IconLabel icon="solar:magnet-linear" label="兼容主流磁轴*" size="large" client:load />
-        <IconLabel icon="solar:colour-tuneing-linear" label="百分比可调键程" size="large" client:load />
-    </div>
+<Product
+  client:load
+  images={[
+    {
+      src: "/images/products/pure64/1.jpg",
+      alt: "Pure 64"
+    },
+    {
+      src: "/images/products/pure64/2.jpg",
+      alt: "Pure 64"
+    }
+  ]}
+  disableBuyButton={true}
+  hideManualButton
+  buyButtonText="已停产"
+>
+  <h1 slot="title">Pure 64</h1>
+  <p slot="description">第一代Pure64的标准版，是具有高性能的泛用键盘，不包含壳体及键帽。</p>
+  <div class="product-icon-labels">
+    <IconLabel icon="solar:shield-check-linear" label="强稳定性" size="large" client:load />
+    <IconLabel icon="solar:stopwatch-broken" label="低延迟" size="large" client:load />
+    <IconLabel icon="solar:magnet-linear" label="兼容主流磁轴*" size="large" client:load />
+    <IconLabel icon="solar:colour-tuneing-linear" label="百分比可调键程" size="large" client:load />
+  </div>
 </Product>
 
-**兼容主流中心磁铁磁轴*
+\*_兼容主流中心磁铁磁轴_

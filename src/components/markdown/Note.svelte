@@ -1,13 +1,7 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import { onMount } from "svelte";
-  export let type:
-    | "default"
-    | "primary"
-    | "success"
-    | "info"
-    | "warning"
-    | "danger" = "default";
+  export let type: "default" | "primary" | "success" | "info" | "warning" | "danger" = "default";
   export let noIcon: boolean = false;
   export let style: "simple" | "modern" | "flat" | "disabled" = "simple";
 
@@ -29,7 +23,7 @@
       icon: undefined,
       bar: "#333",
       text: "var(--note-color-text, #222)",
-      modernText: "#222",
+      modernText: "#222"
     },
     primary: {
       color: "#6f42c1",
@@ -37,7 +31,7 @@
       icon: "solar:add-circle-linear",
       bar: "#4b277a",
       text: "var(--note-color-text, #222)",
-      modernText: "#4b277a",
+      modernText: "#4b277a"
     },
     success: {
       color: "#388e3c",
@@ -45,7 +39,7 @@
       icon: "solar:check-circle-linear",
       bar: "#256025",
       text: "var(--note-color-text, #222)",
-      modernText: "#256025",
+      modernText: "#256025"
     },
     info: {
       color: "#1976d2",
@@ -53,7 +47,7 @@
       icon: "solar:info-circle-linear",
       bar: "#0d47a1",
       text: "var(--note-color-text, #222)",
-      modernText: "#0d47a1",
+      modernText: "#0d47a1"
     },
     warning: {
       color: "#fbc02d",
@@ -61,7 +55,7 @@
       icon: "solar:shield-warning-linear",
       bar: "#b28704",
       text: "var(--note-color-text, #222)",
-      modernText: "#b28704",
+      modernText: "#b28704"
     },
     danger: {
       color: "#d32f2f",
@@ -69,8 +63,8 @@
       icon: "solar:danger-circle-linear",
       bar: "#8a1f1f",
       text: "var(--note-color-text, #222)",
-      modernText: "#8a1f1f",
-    },
+      modernText: "#8a1f1f"
+    }
   };
 
   $: current = classMap[type] || classMap.default;
@@ -80,10 +74,7 @@
     const links = container.querySelectorAll('a[href^="http"]');
     links.forEach((link) => {
       // 可根据是否是外链来判断是否加 target
-      if (
-        link instanceof HTMLAnchorElement &&
-        !link.href.includes(location.hostname)
-      ) {
+      if (link instanceof HTMLAnchorElement && !link.href.includes(location.hostname)) {
         link.setAttribute("target", "_blank");
         link.setAttribute("rel", "noopener noreferrer");
       }
