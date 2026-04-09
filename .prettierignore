@@ -9,5 +9,6 @@ bun.lockb
 # Miscellaneous
 /static/
 
-# MDX file
+# content file
 *.mdx
+*.md

@@ -1,37 +1,44 @@
 ---
 title: "Meowpad V2"
 preview:
-  - "/images/devices/Meowpad_v2.png"
-  - "/images/devices/Meowpad_v2.webp"
+    - "/images/devices/Meowpad_v2.png"
+    - "/images/devices/Meowpad_v2.webp"
 slug: meowpad-v2
 weight: 3
 ---
 
-import Product from "@/components/markdown/Product.svelte"
-import IconLabel from "@/components/markdown/IconLabel.svelte"
+import Product from "@/components/markdown/Product.svelte";
+import IconLabel from "@/components/markdown/IconLabel.svelte";
 
-<Product
-  client:load
-  images={[
-    {
-      src: "/images/products/meowpad_v2/1.jpg",
-      alt: "Meowpad v2"
-    },
-    {
-      src: "/images/products/meowpad_v2/2.jpg",
-      alt: "Meowpad v2"
-    }
-  ]}
-  disableBuyButton={true}
-  hideManualButton
-  buyButtonText="已停产"
->
-  <h1 slot="title">Meowpad v2</h1>
-  <p slot="description">第二代猫盘的标准版，具有高性能的磁轴小键盘。</p>
-  <div class="product-icon-labels">
-    <IconLabel icon="bi:lightning" label="卓越的硬件性能" size="large" client:load />
-    <IconLabel icon="bi:speedometer" label="0.125ms 极速响应" size="large" client:load />
-    <IconLabel icon="bi:lightbulb" label="多种灯效模式" size="large" client:load />
-    <IconLabel icon="bi:gear-wide-connected" label="自定义触发" size="large" client:load />
-  </div>
+<Product client:load
+    images={[
+        {
+            src: "/images/products/meowpad_v2/1.jpg",
+            alt: "Meowpad v2"
+        },
+        {
+            src: "/images/products/meowpad_v2/2.jpg",
+            alt: "Meowpad v2"
+        },
+    ]}
+    disableBuyButton={true}
+    hideManualButton
+    buyButtonText="已停产"
+    >
+    <h1 slot="title">Meowpad v2</h1>
+    <p slot="description">第二代猫盘的标准版，具有高性能的磁轴小键盘。</p>
+    <div class="product-icon-labels">
+        <IconLabel icon="bi:lightning" label="卓越的硬件性能" size="large" client:load />
+        <IconLabel icon="bi:speedometer" label="0.125ms 极速响应" size="large" client:load />
+        <IconLabel icon="bi:lightbulb" label="多种灯效模式" size="large" client:load />
+        <IconLabel icon="bi:gear-wide-connected" label="自定义触发" size="large" client:load />
+    </div>
 </Product>
+
+{/* <div class="prose dark:prose-invert w-[60vw] max-w-none">
+
+# H1
+## H2
+### H3
+
+</div> */}

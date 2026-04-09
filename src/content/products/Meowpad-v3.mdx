@@ -1,36 +1,36 @@
 ---
 title: "Meowpad V3"
 preview:
-  - "/images/devices/Meowpad_v3.png"
-  - "/images/devices/Meowpad_v3.webp"
+    - "/images/devices/Meowpad_v3.png"
+    - "/images/devices/Meowpad_v3.webp"
 slug: meowpad-v3
 weight: 5
 ---
 
-import Product from "@/components/markdown/Product.svelte"
-import IconLabel from "@/components/markdown/IconLabel.svelte"
+import Product from "@/components/markdown/Product.svelte";
+import IconLabel from "@/components/markdown/IconLabel.svelte";
 
-<Product
-  client:load
-  images={[
-    {
-      src: "/images/products/meowpad_v3/1.jpg",
-      alt: "Meowpad V3"
-    },
-    {
-      src: "/images/products/meowpad_v3/2.jpg",
-      alt: "Meowpad V3"
-    }
-  ]}
-  buyLink="https://item.taobao.com/item.htm?id=959872324105"
-  hideManualButton
->
-  <h1 slot="title">Meowpad v3</h1>
-  <p slot="description">全新第三代 Meowpad，搭载高特磁轴，支持多种灯效模式，可自定义触发。</p>
-  <div class="product-icon-labels">
-    <IconLabel icon="solar:cpu-bolt-outline" label="全新设计" size="large" client:load />
-    <IconLabel icon="solar:paint-roller-outline" label="超高颜值" size="large" client:load />
-    <IconLabel icon="solar:magic-stick-2-outline" label="高自定义" size="large" client:load />
-    <IconLabel icon="solar:stars-minimalistic-outline" label="炫彩灯效" size="large" client:load />
-  </div>
+<Product client:load
+    images={[
+        {
+            src: "/images/products/meowpad_v3/1.jpg",
+            alt: "Meowpad V3"
+        },
+        {
+            src: "/images/products/meowpad_v3/2.jpg",
+            alt: "Meowpad V3"
+        },
+    ]}
+    buyLink="https://item.taobao.com/item.htm?id=959872324105"
+    hideManualButton
+    >
+    <h1 slot="title">Meowpad v3</h1>
+    <p slot="description">全新第三代 Meowpad，搭载高特磁轴，支持多种灯效模式，可自定义触发。</p>
+    <div class="product-icon-labels">
+        <IconLabel icon="solar:cpu-bolt-outline" label="全新设计" size="large" client:load />
+        <IconLabel icon="solar:paint-roller-outline" label="超高颜值" size="large" client:load />
+        <IconLabel icon="solar:magic-stick-2-outline" label="高自定义" size="large" client:load />
+        <IconLabel icon="solar:stars-minimalistic-outline" label="炫彩灯效" size="large" client:load />
+    </div>
 </Product>
+

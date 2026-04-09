@@ -1,33 +1,33 @@
 ---
 title: "Meowpad V1"
 preview:
-  - "/images/devices/Meowpad_v1.png"
-  - "/images/devices/Meowpad_v1.webp"
+    - "/images/devices/Meowpad_v1.png"
+    - "/images/devices/Meowpad_v1.webp"
 slug: meowpad-v1
 weight: 1
 ---
 
-import Product from "@/components/markdown/Product.svelte"
-import IconLabel from "@/components/markdown/IconLabel.svelte"
+import Product from "@/components/markdown/Product.svelte";
+import IconLabel from "@/components/markdown/IconLabel.svelte";
 
-<Product
-  client:load
-  images={[
-    {
-      src: "/images/products/meowpad_v1/1.jpg",
-      alt: "Meowpad V1"
-    }
-  ]}
-  disableBuyButton={true}
-  manualLink="/posts/meowpad-v1-product-manual"
-  buyButtonText="已停产"
->
-  <h1 slot="title">Meowpad v1</h1>
-  <p slot="description">v1 & v1.1 第一代猫盘，拥有机械与磁轴两个版本，目前均已停产。</p>
-  {/* <div class="product-icon-labels">
+<Product client:load
+    images={[
+        {
+            src: "/images/products/meowpad_v1/1.jpg",
+            alt: "Meowpad V1"
+        },
+    ]}
+    disableBuyButton={true}
+    manualLink="/posts/meowpad-v1-product-manual"
+    buyButtonText="已停产"
+    >
+    <h1 slot="title">Meowpad v1</h1>
+    <p slot="description">v1 & v1.1 第一代猫盘，拥有机械与磁轴两个版本，目前均已停产。</p>
+    {/* <div class="product-icon-labels">
         <IconLabel icon="solar:add-circle-linear" label="Label1" size="large" client:load />
         <IconLabel icon="solar:add-circle-linear" label="Label2" size="large" client:load />
         <IconLabel icon="solar:add-circle-linear" label="Label3" size="large" client:load />
         <IconLabel icon="solar:add-circle-linear" label="Label4" size="large" client:load />
     </div> */}
 </Product>
+

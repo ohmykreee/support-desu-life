@@ -20,26 +20,22 @@
 ## 开发环境设置
 
 1. 克隆仓库
-
 ```bash
 git clone https://github.com/desu-life/support-desu-life.git
 cd support-desu-life
 ```
 
 2. 安装依赖
-
 ```bash
 pnpm install
 ```
 
 3. 启动开发服务器
-
 ```bash
 pnpm dev
 ```
 
 4. 构建生产版本
-
 ```bash
 pnpm build
 ```
@@ -54,3 +50,4 @@ support-desu-life/
 ├── dist/           # 构建输出目录
 └── scaffold/       # 项目脚手架
 ```
+
