@@ -37,7 +37,7 @@
   <div class="search-box__result" transition:fade={{ duration: 200 }}>
     <div class="result-card">
       <ul class="result-list">
-        {#each result as item}
+        {#each result as item (item.id)}
           <li class="result-item" transition:fade={{ duration: 200 }}>
             <a href={`/download/${item.id}`}>
               <div class="result-content">

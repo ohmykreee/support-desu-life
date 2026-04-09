@@ -1,6 +1,6 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
 
-import { glob, file } from "astro/loaders";
+import { glob } from "astro/loaders";
 
 const products = defineCollection({
   loader: glob({ pattern: "**/*.mdx", base: "src/content/products" })

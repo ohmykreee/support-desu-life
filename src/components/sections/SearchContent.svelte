@@ -78,7 +78,7 @@
   <div class="search-box__result">
     <div class="result-card">
       <ul class="result-list">
-        {#each results as result}
+        {#each results as result (result.id)}
           <li class="result-item">
             <a href={result.type === "post" ? `/posts/${result.slug}` : `/download/${result.id}`}>
               <div class="result-content">

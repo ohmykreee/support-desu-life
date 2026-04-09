@@ -6,11 +6,11 @@ export const extractMdxText = (raw: string | undefined) => {
       .replace(/^import\s.*?from\s.*?;?$/gm, "")
       .replace(/^export\s.*$/gm, "")
       // 移除所有 HTML/JSX 起始标签
-      .replace(/<[\w\-]+[^>]*>/g, "")
+      .replace(/<[\w-]+[^>]*>/g, "")
       // 移除所有结束标签
-      .replace(/<\/[\w\-]+>/g, "")
+      .replace(/<\/[\w-]+>/g, "")
       // 移除空标签（<Tag />）
-      .replace(/<[\w\-]+[^>]*\/>/g, "")
+      .replace(/<[\w-]+[^>]*\/>/g, "")
       // 可选：去除花括号表达式
       .replace(/{.*?}/g, "")
       // \r\n 替换为 \n

@@ -14,7 +14,7 @@
 </script>
 
 <swiper-container navigation="true" scrollbar="true" autoplay="true" loop="true">
-  {#each images as image}
+  {#each images as image (image.alt)}
     <swiper-slide class="swiper-slide">
       <img src={image.src} alt={image.alt} class="swiper-slide-img" />
     </swiper-slide>
