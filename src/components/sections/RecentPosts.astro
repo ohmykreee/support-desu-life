@@ -51,9 +51,9 @@ const posts = await getCollection("posts")
   .recent-posts-title {
     font-size: 2rem;
     font-weight: 600;
-    color: #fff;
-  }
-  .recent-posts-list {
+    color: var(--color-text);
+}
+.recent-posts-list {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -130,7 +130,7 @@ const posts = await getCollection("posts")
   }
   .recent-posts-description {
     font-size: 1rem;
-    color: #bbb;
+    color: var(--color-text-secondary);
     margin: 0.5rem 0 0 0;
     text-align: center;
     letter-spacing: 0.5px;

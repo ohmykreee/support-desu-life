@@ -21,10 +21,10 @@
     };
 
     if (currTheme === 'light') {
-      document.body.classList.add('light');
+      document.documentElement.classList.remove('dark')
       localStorage.setItem('theme', $state.snapshot(theme));
     } else {
-      document.body.classList.remove('light');
+      document.documentElement.classList.add('dark')
       localStorage.setItem('theme', $state.snapshot(theme));
     }
     

@@ -25,7 +25,7 @@
 <style>
   swiper-container {
     display: block;
-    --swiper-navigation-color: var(--color-text);
+    --swiper-navigation-color: #fff;
   }
   .swiper-slide {
     width: 100%;
