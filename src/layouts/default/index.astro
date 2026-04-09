@@ -9,7 +9,6 @@ import "@/assets/css/main.css"
 	<head>
 		<script is:inline>
 			(function() {
-				const theme = localStorage.getItem('theme');
 				if (localStorage.getItem('theme') === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
 					document.documentElement.classList.add('dark');
 				}
