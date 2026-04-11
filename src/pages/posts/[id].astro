@@ -1,30 +1,30 @@
 ---
-import Layout from '@/layouts/default/index.astro';
-import { getCollection, render } from 'astro:content';
-import { Icon } from 'astro-icon/components';
-import Seo from '@/components/common/Seo.astro';
+import Layout from "@/layouts/default/index.astro"
+import { getCollection, render } from "astro:content"
+import { Icon } from "astro-icon/components"
+import Seo from "@/components/common/Seo.astro"
 
 export async function getStaticPaths() {
-    const posts = await getCollection('posts');
-    return posts.map((post) => {
-        const slug = post.data.slug;
-        let id: string;
+  const posts = await getCollection("posts")
+  return posts.map((post) => {
+    const slug = post.data.slug
+    let id: string
 
-        if (slug) {
-            id = slug;
-        } else {
-            const raw = post.id;
-            id = raw.split('/').pop()?.split('.')[0] ?? raw;
-        }
+    if (slug) {
+      id = slug
+    } else {
+      const raw = post.id
+      id = raw.split("/").pop()?.split(".")[0] ?? raw
+    }
 
-        return {
-            params: { id },
-            props: { post },
-        };
-    });
+    return {
+      params: { id },
+      props: { post }
+    }
+  })
 }
-const { post } = Astro.props;
-const { Content } = await render(post);
+const { post } = Astro.props
+const { Content } = await render(post)
 ---
 
 <Seo
@@ -35,97 +35,107 @@ const { Content } = await render(post);
 />
 
 <Layout>
-    <div class="post-header">
-        <img src={post.data.top_img} alt={post.data.title} />
-        <h1 class="post-title">{post.data.title}</h1>
-        <p class="post-date"><Icon name="solar:calendar-linear" mode="external" /> {new Date(post.data.date).toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+  <div class="post-header">
+    <img src={post.data.top_img} alt={post.data.title} />
+    <h1 class="post-title">{post.data.title}</h1>
+    <p class="post-date">
+      <Icon name="solar:calendar-linear" mode="external" />
+      {
+        new Date(post.data.date).toLocaleDateString("zh-CN", {
+          year: "numeric",
+          month: "long",
+          day: "numeric"
+        })
+      }
+    </p>
+  </div>
+  <div class="post-container">
+    <div class="post-content prose dark:prose-invert max-w-none">
+      <Content />
     </div>
-    <div class="post-container">
-        <div class="post-content prose dark:prose-invert max-w-none">
-            <Content />
-        </div>
-    </div>
+  </div>
 </Layout>
 
 <style>
+  .post-container {
+    width: 60vw;
+    margin: 0 auto;
+    padding: 4rem 0 0 0;
+    min-height: 40vh;
+  }
+
+  .post-content {
+    width: 100%;
+    min-height: 40vh;
+  }
+
+  .post-header {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .post-header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .post-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    filter: brightness(0.7);
+  }
+
+  .post-date {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .prose {
+    :where(blockquote p:first-of-type):not(
+        :where([class~="not-prose"], [class~="not-prose"] *)
+      )::before {
+      content: none;
+    }
+
+    :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *))::before,
+    :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *))::after {
+      content: none;
+    }
+
+    :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)):not(pre code) {
+      background-color: var(--color-background-code);
+      color: #d4d4d4;
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
     .post-container {
-        width: 60vw;
-        margin: 0 auto;
-        padding: 4rem 0 0 0;
-        min-height: 40vh;
+      width: 80vw;
+      margin: 0 auto;
+      padding: 2rem 0 0 0;
     }
-
-    .post-content {
-        width: 100%;
-        min-height: 40vh;
-    }
-
-    .post-header {
-        width: 100%;
-        height: 300px;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .post-header h1 {
-        font-size: 2rem;
-        font-weight: 600;
-        color: #fff;
-    }
-
-    .post-header img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        filter: brightness(0.7);
-    }
-
-    .post-date {
-        font-size: 1rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
     .prose {
-        
-        :where(blockquote p:first-of-type):not(:where([class~="not-prose"],[class~="not-prose"] *))::before {
-            content: none;
-        }
-        
-        :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::before,
-        :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::after {
-            content: none;
-        }
-
-        :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *)):not(pre code) {
-            background-color: var(--color-background-code);
-            color: #d4d4d4;
-            padding: 0.2rem 0.4rem;
-            border-radius: 0.2rem;
-        }
+      :where(table):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+        display: block;
+        overflow-x: auto;
+      }
     }
-
-    @media (max-width: 768px) {
-        .post-container {
-            width: 80vw;
-            margin: 0 auto;
-            padding: 2rem 0 0 0;
-        }
-        .prose {
-            :where(table):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
-                display: block;
-                overflow-x: auto;
-            }
-        }
-    }
+  }
 </style>

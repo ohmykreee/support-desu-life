@@ -1,22 +1,24 @@
 ---
-import { getCollection } from "astro:content";
-const products = await getCollection("products");
-const { isH1 = false } = Astro.props;
+import { getCollection } from "astro:content"
+const products = await getCollection("products")
+const { isH1 = false } = Astro.props
 ---
 
 <section class="devices-section">
-  {isH1 ? (
-    <h1 class="devices-title">Kagami Studio 设备</h1>
-  ) : (
-    <h2 class="devices-title">Kagami Studio 设备</h2>
-  )}
+  {
+    isH1 ? (
+      <h1 class="devices-title">Kagami Studio 设备</h1>
+    ) : (
+      <h2 class="devices-title">Kagami Studio 设备</h2>
+    )
+  }
   <div class="devices-list">
     {
       products
         .sort((a, b) => (b.data.weight ?? 0) - (a.data.weight ?? 0))
         .map((product) => (
           <a
-            href={`/products/${product.data.slug ?? (product.id.split('/').pop()?.split('.')[0] ?? product.id)}`}
+            href={`/products/${product.data.slug ?? product.id.split("/").pop()?.split(".")[0] ?? product.id}`}
             class="device-item"
           >
             <span class="device-glow" />
@@ -24,15 +26,11 @@ const { isH1 = false } = Astro.props;
               {Array.isArray(product.data.preview) ? (
                 <>
                   <source
-                    srcset={product.data.preview.find((src: string) =>
-                      src.endsWith(".webp")
-                    )}
+                    srcset={product.data.preview.find((src: string) => src.endsWith(".webp"))}
                     type="image/webp"
                   />
                   <source
-                    srcset={product.data.preview.find((src: string) =>
-                      src.endsWith(".png")
-                    )}
+                    srcset={product.data.preview.find((src: string) => src.endsWith(".png"))}
                     type="image/png"
                   />
                 </>
@@ -43,9 +41,8 @@ const { isH1 = false } = Astro.props;
               <img
                 src={
                   Array.isArray(product.data.preview)
-                    ? product.data.preview.find((src: string) =>
-                        src.endsWith(".png")
-                      ) || product.data.preview[0]
+                    ? product.data.preview.find((src: string) => src.endsWith(".png")) ||
+                      product.data.preview[0]
                     : product.data.preview
                 }
                 alt={`${product.data.title} 产品图片`}
@@ -117,11 +114,7 @@ const { isH1 = false } = Astro.props;
     left: 50%;
     width: 120px;
     height: 120px;
-    background: radial-gradient(
-      circle,
-      rgba(116, 239, 255, 0.274) 0%,
-      rgba(0, 0, 0, 0) 70%
-    );
+    background: radial-gradient(circle, rgba(116, 239, 255, 0.274) 0%, rgba(0, 0, 0, 0) 70%);
     border-radius: 50%;
     transform: translate(-50%, -50%) scale(0.7);
     opacity: 0;

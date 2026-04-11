@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { fade } from "svelte/transition";
-  let props = $props();
-  let data: any[] = props.data || [];
+  import { fade } from "svelte/transition"
+  let props = $props()
+  let data: any[] = props.data || []
 
-  let searchValue = $state("");
-  let showResultCount = $derived(searchValue.length > 0);
+  let searchValue = $state("")
+  let showResultCount = $derived(searchValue.length > 0)
   let result = $derived(
     searchValue
       ? data.filter((item: any) =>
@@ -13,8 +13,8 @@
           )
         )
       : []
-  );
-  let resultCount = $derived(result.length);
+  )
+  let resultCount = $derived(result.length)
 </script>
 
 <div class="search-box" role="search">
@@ -34,15 +34,19 @@
   </p>
 {/if}
 {#if result.length > 0}
-  <div class="search-box__result" transition:fade={{duration: 200}}>
+  <div class="search-box__result" transition:fade={{ duration: 200 }}>
     <div class="result-card">
       <ul class="result-list">
-        {#each result as item}
-          <li class="result-item" transition:fade={{duration: 200}}>
+        {#each result as item (item.id)}
+          <li class="result-item" transition:fade={{ duration: 200 }}>
             <a href={`/download/${item.id}`}>
               <div class="result-content">
                 <h3 class="result-title">{item.label}</h3>
-                <p class="result-info">设备: {item.device} {#if item.version} | 版本: {item.version}{/if}</p>
+                <p class="result-info">
+                  设备: {item.device}
+                  {#if item.version}
+                    | 版本: {item.version}{/if}
+                </p>
               </div>
             </a>
           </li>
@@ -121,7 +125,7 @@
     color: var(--color-text-primary);
   }
   .result-item a::after {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 0;

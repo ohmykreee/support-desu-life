@@ -16,7 +16,6 @@ jobs:
       release_type: ${{ steps.determine-release.outputs.RELEASE_TYPE }}
       tag_name: ${{ steps.determine-release.outputs.TAG_NAME }}
     steps:
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -70,7 +69,6 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ needs.build.outputs.release_type == 'release' }}
     steps:
-
       - name: Download Release
         uses: robinraju/release-downloader@v1
         with:

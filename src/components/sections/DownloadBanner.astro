@@ -1,44 +1,39 @@
 ---
-import { Icon } from "astro-icon/components";
-import { Image } from "astro:assets";
-import MPCImage from "@/assets/images/MPC.jpeg";
-import Dropdown from "@/components/common/Dropdown.svelte";
+import { Icon } from "astro-icon/components"
+import { Image } from "astro:assets"
+import MPCImage from "@/assets/images/MPC.jpeg"
+import Dropdown from "@/components/common/Dropdown.svelte"
 const downloadUrl = {
-  windows: "https://assets.desu.life/device/app/resources/MeowpadConfiguratorForV2_v1.2.0_windows.msi",
+  windows:
+    "https://assets.desu.life/device/app/resources/MeowpadConfiguratorForV2_v1.2.0_windows.msi",
   macos: {
     dmg: "https://assets.desu.life/device/app/resources/MeowpadConfiguratorForV2_v1.2.0_macos.dmg",
-    app: "https://assets.desu.life/device/app/resources/MeowpadConfiguratorForV2_v1.2.0_macos_app.zip",
+    app: "https://assets.desu.life/device/app/resources/MeowpadConfiguratorForV2_v1.2.0_macos_app.zip"
   },
   linux: {
     deb: "https://assets.desu.life/device/app/resources/MeowpadConfiguratorForV2_v1.2.0_linux.deb",
-    appimage: "https://assets.desu.life/device/app/resources/MeowpadConfiguratorForV2_v1.2.0_linux.AppImage",
-  },
-};
+    appimage:
+      "https://assets.desu.life/device/app/resources/MeowpadConfiguratorForV2_v1.2.0_linux.AppImage"
+  }
+}
 ---
 
 <div class="download-banner">
   <div class="download-banner__header">
     <h2 class="download-banner__main-title">下载 Kagami Studio 硬件配置器</h2>
-    <div class="download-banner__subtitle">
-      * 支持 Meowpad v1 之后发售的所有产品
-    </div>
+    <div class="download-banner__subtitle">* 支持 Meowpad v1 之后发售的所有产品</div>
   </div>
   <div class="download-banner__content-row">
     <!-- 左侧图片 -->
     <div class="download-banner__left">
-      <Image
-        class="download-banner__image"
-        src={MPCImage}
-        alt="MPC 配置器截图"
-        loading="eager"
-      />
+      <Image class="download-banner__image" src={MPCImage} alt="MPC 配置器截图" loading="eager" />
     </div>
     <!-- 右侧内容 -->
     <div class="download-banner__right">
       <div>
         <h2 class="download-banner__title">MPC - 磁轴键盘配置器</h2>
         <div class="download-banner__desc">
-          配置简单，几步搞定<br>
+          配置简单，几步搞定<br />
           支持多产品，一套配置器打通所有设备
         </div>
       </div>
@@ -59,11 +54,7 @@ const downloadUrl = {
       </div>
       <!-- 下载按钮 -->
       <div class="download-banner__buttons">
-        <a
-          class="download-banner__button"
-          href={downloadUrl.windows}
-          target="_blank"
-        >
+        <a class="download-banner__button" href={downloadUrl.windows} target="_blank">
           <img src="/icons/windows11.svg" alt="Windows Icon" class="download-banner__button-icon" /> Windows
         </a>
         <Dropdown dropdownTrigger="hover" client:load>
@@ -71,14 +62,8 @@ const downloadUrl = {
             <img src="/icons/apple.svg" alt="MacOS Icon" class="download-banner__button-icon" /> MacOS
           </div>
           <ul slot="menu" class="dropdown-list">
-            <a
-              href={downloadUrl.macos.dmg}
-              target="_blank"><li>DMG 安装包</li></a
-            >
-            <a
-              href={downloadUrl.macos.app}
-              target="_blank"><li>APP (便携版)</li></a
-            >
+            <li><a href={downloadUrl.macos.dmg} target="_blank">DMG 安装包</a></li>
+            <li><a href={downloadUrl.macos.app} target="_blank">APP (便携版)</a></li>
           </ul>
         </Dropdown>
         <Dropdown dropdownTrigger="hover" client:load>
@@ -86,14 +71,8 @@ const downloadUrl = {
             <img src="/icons/linux.svg" alt="Linux Icon" class="download-banner__button-icon" /> Linux
           </div>
           <ul slot="menu" class="dropdown-list">
-            <a
-              href={downloadUrl.linux.deb}
-              target="_blank"><li>DEB 包</li></a
-            >
-            <a
-              href={downloadUrl.linux.appimage}
-              target="_blank"><li>AppImage</li></a
-            >
+            <li><a href={downloadUrl.linux.deb} target="_blank">DEB 包</a></li>
+            <li><a href={downloadUrl.linux.appimage} target="_blank">AppImage</a></li>
           </ul>
         </Dropdown>
       </div>
@@ -237,9 +216,10 @@ const downloadUrl = {
   .dropdown-list li:hover {
     background: var(--color-background-hover, #444);
   }
-  .dropdown-list li:hover a {
+  /* 原先<li>在<a>里时，这个样式未生效。修正后为匹配以往行为进行修正。 */
+  /* .dropdown-list li:hover a {
     color: var(--color-primary, #3b82f6);
-  }
+  } */
 
   @media (max-width: 1200px) {
     .download-banner {

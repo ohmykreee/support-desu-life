@@ -1,54 +1,54 @@
 <script lang="ts">
-  import { fade, fly } from 'svelte/transition';
-  import { createEventDispatcher, onMount } from 'svelte';
+  import { fade, fly } from "svelte/transition"
+  import { createEventDispatcher, onMount } from "svelte"
 
-  let isOpen = false;
-  export let direction: 'left' | 'right' | 'top' | 'bottom' = 'right';
-  export let closeOnOverlayClick = true;
-  export let showCloseButton = true;
+  let isOpen = false
+  export let direction: "left" | "right" | "top" | "bottom" = "right"
+  export let closeOnOverlayClick = true
+  export let showCloseButton = true
 
-  const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher()
 
   function handleClose() {
-    isOpen = false;
-    dispatch('close');
+    isOpen = false
+    dispatch("close")
   }
 
   function handleOverlayClick() {
     if (closeOnOverlayClick) {
-      handleClose();
+      handleClose()
     }
   }
 
   export function toggleDrawer() {
-    isOpen = !isOpen;
+    isOpen = !isOpen
   }
 
   $: slideDirection = {
-    left: { x: '-100%', duration: 200 },
-    right: { x: '100%', duration: 200 },
-    top: { y: '-100%', duration: 200 },
-    bottom: { y: '100%', duration: 200 }
-  }[direction];
+    left: { x: "-100%", duration: 200 },
+    right: { x: "100%", duration: 200 },
+    top: { y: "-100%", duration: 200 },
+    bottom: { y: "100%", duration: 200 }
+  }[direction]
 
   onMount(() => {
     return () => {
-      document.body.classList.remove('drawer-open');
-    };
-  });
+      document.body.classList.remove("drawer-open")
+    }
+  })
 
-  $: if (typeof document !== 'undefined') {
+  $: if (typeof document !== "undefined") {
     if (isOpen) {
-      document.body.classList.add('drawer-open');
+      document.body.classList.add("drawer-open")
     } else {
-      document.body.classList.remove('drawer-open');
+      document.body.classList.remove("drawer-open")
     }
   }
 </script>
 
-<button 
-  class="drawer-toggle" 
-  on:click={() => isOpen = !isOpen}
+<button
+  class="drawer-toggle"
+  on:click={() => (isOpen = !isOpen)}
   aria-label="打开菜单"
   aria-expanded={isOpen}
 >
@@ -62,24 +62,30 @@
     tabindex="0"
     class="drawer-overlay"
     on:click={handleOverlayClick}
-    on:keydown={(e) => e.key === 'Escape' && handleClose()}
+    on:keydown={(e) => e.key === "Escape" && handleClose()}
     transition:fade={{ duration: 200 }}
   >
     <!-- svelte-ignore a11y_click_events_have_key_events -->
     <!-- svelte-ignore a11y_no_static_element_interactions -->
     <div
       class="drawer"
-      class:left={direction === 'left'}
-      class:right={direction === 'right'}
-      class:top={direction === 'top'}
-      class:bottom={direction === 'bottom'}
+      class:left={direction === "left"}
+      class:right={direction === "right"}
+      class:top={direction === "top"}
+      class:bottom={direction === "bottom"}
       on:click|stopPropagation
       transition:fly={slideDirection}
     >
       <div class="drawer-header">
         <slot name="header" />
         {#if showCloseButton}
-          <button class="close-button close-button__position-{direction}" type="button" on:click={handleClose}>×</button>
+          <button
+            class="close-button close-button__position-{direction}"
+            type="button"
+            on:click={handleClose}
+          >
+            ×
+          </button>
         {/if}
       </div>
       <div class="drawer-content">
@@ -202,7 +208,7 @@
     right: 1rem;
     top: 0;
   }
-  
+
   .drawer-toggle {
     min-width: 32px;
     min-height: 32px;

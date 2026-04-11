@@ -1,8 +1,8 @@
 ---
-import Logo from "@/assets/images/desulife-logo-typography.svg";
-import Dropdown from "@/components/common/Dropdown.svelte";
-import Drawer from "@/components/common/Drawer.svelte";
-import { Icon } from "astro-icon/components";
+import Logo from "@/assets/images/desulife-logo-typography.svg"
+import Dropdown from "@/components/common/Dropdown.svelte"
+import Drawer from "@/components/common/Drawer.svelte"
+import { Icon } from "astro-icon/components"
 ---
 
 <header>
@@ -18,12 +18,7 @@ import { Icon } from "astro-icon/components";
         </a>
       </div>
       <div class="right-content show-on-mobile">
-        <Drawer
-          client:load
-          direction="right"
-          closeOnOverlayClick={true}
-          showCloseButton={true}
-        >
+        <Drawer client:load direction="right" closeOnOverlayClick={true} showCloseButton={true}>
           <Icon slot="button-icon" name="solar:hamburger-menu-linear" class="icon" />
           <div class="drawer-content">
             <ul class="drawer-menu">

@@ -1,7 +1,7 @@
 ---
-import Layout from '@/layouts/default/index.astro';
+import Layout from "@/layouts/default/index.astro"
 import { Content } from "@/content/data/about.mdx"
-import Seo from "@/components/common/Seo.astro";
+import Seo from "@/components/common/Seo.astro"
 ---
 
 <Seo
@@ -11,17 +11,17 @@ import Seo from "@/components/common/Seo.astro";
 />
 
 <Layout>
-    <div class="about-container">
-        <div class="prose dark:prose-invert w-[60vw] max-w-none">
-            <Content />
-        </div>
+  <div class="about-container">
+    <div class="prose dark:prose-invert w-[60vw] max-w-none">
+      <Content />
     </div>
+  </div>
 </Layout>
 
 <style>
-    .about-container {
-        width: 70vw;
-        margin: 0 auto;
-        padding: 2rem 0;
-    }
+  .about-container {
+    width: 70vw;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
 </style>

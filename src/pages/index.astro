@@ -1,12 +1,12 @@
 ---
-import Seo from "@/components/common/Seo.astro";
-import Layout from "@/layouts/default/index.astro";
-import banner from "@/assets/images/banner_bg.webp";
-import { Icon } from "astro-icon/components";
-import DownloadBanner from "@/components/sections/DownloadBanner.astro";
-import RecentPosts from "@/components/sections/RecentPosts.astro";
-import Devices from "@/components/sections/Devices.astro";
-import { Image } from "astro:assets";
+import Seo from "@/components/common/Seo.astro"
+import Layout from "@/layouts/default/index.astro"
+import banner from "@/assets/images/banner_bg.webp"
+import { Icon } from "astro-icon/components"
+import DownloadBanner from "@/components/sections/DownloadBanner.astro"
+import RecentPosts from "@/components/sections/RecentPosts.astro"
+import Devices from "@/components/sections/Devices.astro"
+import { Image } from "astro:assets"
 ---
 
 <Seo
@@ -29,11 +29,7 @@ import { Image } from "astro:assets";
         <div class="search-box">
           <Icon name="solar:magnifer-linear" class="icon" mode="external" />
           <form action="/search" method="get">
-            <input
-              type="text"
-              placeholder="搜索帮助内容（例：Pure64）"
-              name="q"
-            />
+            <input type="text" placeholder="搜索帮助内容（例：Pure64）" name="q" />
           </form>
         </div>
       </div>
