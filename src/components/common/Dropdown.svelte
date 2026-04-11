@@ -4,7 +4,7 @@
   export let dropdownTrigger: "hover" | "click" | "focus" = "hover"
 
   let open = false
-  let hideTimeout: NodeJS.Timeout | null = null
+  let hideTimeout: ReturnType<typeof window.setTimeout> | null = null
 
   function toggle(type: "hover" | "click" | "focus" | "force") {
     if (type === dropdownTrigger) {
