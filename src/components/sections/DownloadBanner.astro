@@ -62,8 +62,8 @@ const downloadUrl = {
             <img src="/icons/apple.svg" alt="MacOS Icon" class="download-banner__button-icon" /> MacOS
           </div>
           <ul slot="menu" class="dropdown-list">
-            <a href={downloadUrl.macos.dmg} target="_blank"><li>DMG 安装包</li></a>
-            <a href={downloadUrl.macos.app} target="_blank"><li>APP (便携版)</li></a>
+            <li><a href={downloadUrl.macos.dmg} target="_blank">DMG 安装包</a></li>
+            <li><a href={downloadUrl.macos.app} target="_blank">APP (便携版)</a></li>
           </ul>
         </Dropdown>
         <Dropdown dropdownTrigger="hover" client:load>
@@ -71,8 +71,8 @@ const downloadUrl = {
             <img src="/icons/linux.svg" alt="Linux Icon" class="download-banner__button-icon" /> Linux
           </div>
           <ul slot="menu" class="dropdown-list">
-            <a href={downloadUrl.linux.deb} target="_blank"><li>DEB 包</li></a>
-            <a href={downloadUrl.linux.appimage} target="_blank"><li>AppImage</li></a>
+            <li><a href={downloadUrl.linux.deb} target="_blank">DEB 包</a></li>
+            <li><a href={downloadUrl.linux.appimage} target="_blank">AppImage</a></li>
           </ul>
         </Dropdown>
       </div>
@@ -216,9 +216,10 @@ const downloadUrl = {
   .dropdown-list li:hover {
     background: var(--color-background-hover, #444);
   }
-  .dropdown-list li:hover a {
+  /* 原先<li>在<a>里时，这个样式未生效。修正后为匹配以往行为进行修正。 */
+  /* .dropdown-list li:hover a {
     color: var(--color-primary, #3b82f6);
-  }
+  } */
 
   @media (max-width: 1200px) {
     .download-banner {

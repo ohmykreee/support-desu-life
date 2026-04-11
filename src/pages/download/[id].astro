@@ -102,7 +102,12 @@ function getSize(size: number | string): string {
       </div>
     </div>
     <div class="firmware-download">
-      <a href={information.download_url} target="_blank" class="firmware-download__button">
+      <a
+        href={information.download_url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="firmware-download__button"
+      >
         <Icon name="solar:download-linear" mode="external" />
         下载固件
       </a>

@@ -15,8 +15,8 @@ export default [
   ...ts.configs.recommended,
   ...eslintPluginAstro.configs.recommended,
   ...eslintPluginAstro.configs["jsx-a11y-recommended"],
-  ...svelte.configs["flat/recommended"],
-  ...svelte.configs["flat/prettier"],
+  ...svelte.configs.recommended,
+  ...svelte.configs.prettier,
   {
     files: ["**/*.astro"],
     languageOptions: {
