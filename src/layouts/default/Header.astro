@@ -21,12 +21,7 @@ import { Icon } from "astro-icon/components"
       <div class="right-content">
         <Theme client:load />
         <div class="show-on-mobile">
-          <Drawer
-            client:load
-            direction="right"
-            closeOnOverlayClick={true}
-            showCloseButton={true}
-          >
+          <Drawer client:load direction="right" closeOnOverlayClick={true} showCloseButton={true}>
             <Icon slot="button-icon" name="solar:hamburger-menu-linear" class="icon" />
             <div class="drawer-content">
               <ul class="drawer-menu">
@@ -62,11 +57,11 @@ import { Icon } from "astro-icon/components"
           <Dropdown dropdownTrigger="hover" client:load>
             <a href="/products" slot="trigger">产品</a>
             <ul slot="menu" class="dropdown-list">
-              <a href="/products/meowpad-v3"><li>Meowpad V3</li></a>
-              <a href="/products/pure64"><li>Pure64</li></a>
-              <a href="/products/meowpad-v2-se"><li>Meowpad V2 SE</li></a>
-              <a href="/products/meowpad-v2"><li>Meowpad V2</li></a>
-              <a href="/products/meowpad-v1"><li>Meowpad V1</li></a>
+              <li><a href="/products/meowpad-v3">Meowpad V3</a></li>
+              <li><a href="/products/pure64">Pure64</a></li>
+              <li><a href="/products/meowpad-v2-se">Meowpad V2 SE</a></li>
+              <li><a href="/products/meowpad-v2">Meowpad V2</a></li>
+              <li><a href="/products/meowpad-v1">Meowpad V1</a></li>
             </ul>
           </Dropdown>
         </li>
@@ -165,21 +160,21 @@ import { Icon } from "astro-icon/components"
     text-decoration: none;
   }
   .dropdown-list li {
+    color: var(--color-text);
+    background: var(--color-background);
+    font-size: 14px;
     padding: 8px 12px;
     border-radius: 6px;
     transition: background 0.2s;
   }
-  .dropdown-list a:hover li {
-    background: #2a2a2a;
+  .dropdown-list li:hover {
+    background: var(--color-background-secondary);
     border-radius: 6px;
     cursor: pointer;
   }
+  /* 为了匹配原始行为（a:hover 不变色） */
   .dropdown-list a:hover {
-    color: var(--color-primary);
-  }
-  .dropdown-list li {
-    color: var(--color-text);
-    font-size: 14px;
+    color: inherit;
   }
   .right-content {
     display: flex;

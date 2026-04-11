@@ -1,44 +1,47 @@
 <script lang="ts">
-  import { untrack } from "svelte";
-  import Icon from "@iconify/svelte";
+  import { untrack } from "svelte"
+  import Icon from "@iconify/svelte"
 
-  type Theme = 'light' | 'dark';
+  type Theme = "light" | "dark"
 
-  let theme = $state();
+  let theme = $state()
 
   $effect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    let currTheme: Theme;
+    const savedTheme = localStorage.getItem("theme")
+    let currTheme: Theme
 
-    if (theme === 'light' || theme === 'dark') {
-      currTheme = $state.snapshot(theme);
-    } else if (savedTheme === 'light' || savedTheme === 'dark') {
-      currTheme = savedTheme;
-    } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-      currTheme = 'light';
+    if (theme === "light" || theme === "dark") {
+      currTheme = $state.snapshot(theme)
+    } else if (savedTheme === "light" || savedTheme === "dark") {
+      currTheme = savedTheme
+    } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+      currTheme = "light"
     } else {
-      currTheme = 'dark';
-    };
-
-    if (currTheme === 'light') {
-      document.documentElement.classList.remove('dark')
-      localStorage.setItem('theme', $state.snapshot(theme));
-    } else {
-      document.documentElement.classList.add('dark')
-      localStorage.setItem('theme', $state.snapshot(theme));
+      currTheme = "dark"
     }
-    
+
+    if (currTheme === "light") {
+      document.documentElement.classList.remove("dark")
+      localStorage.setItem("theme", $state.snapshot(theme))
+    } else {
+      document.documentElement.classList.add("dark")
+      localStorage.setItem("theme", $state.snapshot(theme))
+    }
+
     untrack(() => {
-      theme = currTheme;
-    });
+      theme = currTheme
+    })
   })
 </script>
 
-<button 
-  class="theme-btn" 
+<button
+  class="theme-btn"
   aria-label="切换主题"
-  onclick={() => {theme = theme === 'dark'? 'light':'dark'}}>
-  {#if theme === 'dark'}
+  onclick={() => {
+    theme = theme === "dark" ? "light" : "dark"
+  }}
+>
+  {#if theme === "dark"}
     <Icon icon="tabler:moon" />
   {:else}
     <Icon icon="tabler:sun" />

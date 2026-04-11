@@ -34,31 +34,31 @@
   --color-danger-hover: #f46154;
   --color-danger-disabled: #f4433650;
 
-    --color-background: #181818;
-    --color-background-secondary: #242424; 
-    --color-background-code: #242424;
-    --color-text: #FFF;
-    --color-text-primary: #FFF;
-    --color-text-secondary: #CCC;
+  --color-background: #ffffff;
+  --color-background-secondary: #dadada;
+  --color-background-code: #242424;
+  --color-text: #1d1d1f;
+  --color-text-primary: #000000;
+  --color-text-secondary: #86868b;
 
-    --color-button-primary: #4DACEE;
-    --color-button-primary-hover: #61BFFF;
-    --color-button-primary-disabled: #75BFFF50;
+  --color-button-primary: #4dacee;
+  --color-button-primary-hover: #61bfff;
+  --color-button-primary-disabled: #75bfff50;
 
-    --color-button-secondary: #E5E5EA;
-    --color-button-secondary-hover: #D1D1D6;
-    --color-button-secondary-disabled: #F2F2F7;
+  --color-button-secondary: #e5e5ea;
+  --color-button-secondary-hover: #d1d1d6;
+  --color-button-secondary-disabled: #f2f2f7;
 }
 
 .dark {
   --color-background: #181818;
-  --color-background-secondary: #242424; 
+  --color-background-secondary: #242424;
   --color-background-code: #242424;
-  --color-text: #FFF;
-  --color-text-primary: #FFF;
-  --color-text-secondary: #CCC;
+  --color-text: #fff;
+  --color-text-primary: #fff;
+  --color-text-secondary: #ccc;
 
   --color-button-secondary: #303030;
   --color-button-secondary-hover: #404040;
-  --color-button-secondary-disabled: #A4A4A4;
+  --color-button-secondary-disabled: #a4a4a4;
 }

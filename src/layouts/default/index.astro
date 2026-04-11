@@ -6,15 +6,18 @@ import "@/assets/css/main.css"
 
 <!doctype html>
 <html lang="zh">
-	<head>
-		<script is:inline>
-			(function() {
-				if (localStorage.getItem('theme') === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-					document.documentElement.classList.add('dark');
-				}
-			})();
-		</script>
-	</head>
+  <head>
+    <script is:inline>
+      ;(function () {
+        if (
+          localStorage.getItem("theme") === "dark" ||
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+        ) {
+          document.documentElement.classList.add("dark")
+        }
+      })()
+    </script>
+  </head>
   <body>
     <Header />
     <main>

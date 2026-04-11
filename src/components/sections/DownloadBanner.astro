@@ -191,7 +191,7 @@ const downloadUrl = {
     list-style: none;
     display: flex;
     flex-direction: column;
-    background: var(--color-background-secondary, #242424);
+    background: var(--color-background, #242424);
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     min-width: 150px;
@@ -216,7 +216,7 @@ const downloadUrl = {
     border-bottom: none;
   }
   .dropdown-list li:hover {
-    background: var(--color-background-hover, #444);
+    background: var(--color-background-secondary, #444);
   }
   /* 原先<li>在<a>里时，这个样式未生效。修正后为匹配以往行为进行修正。 */
   /* .dropdown-list li:hover a {
